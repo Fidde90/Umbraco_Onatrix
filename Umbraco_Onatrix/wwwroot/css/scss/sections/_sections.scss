@@ -1,0 +1,41 @@
+@import "./header";
+@import "./breadcrubms";
+@import "./footer";
+
+//HomePage
+@import "./Home-page/hero-section";
+@import "./Home-page/about-us";
+@import "./Home-page/our-services";
+@import "./Home-page/our-story";
+@import "./Home-page/success-stories";
+@import "./Home-page/recent-projects";
+@import "./Home-page/brand-mentions";
+
+//AboutPage
+@import "./../components/title-breadcrumbs";
+@import "./About-page/article";
+@import "./About-page/great-reviews";
+@import "./About-page/our-expert";
+
+//SevicesPage
+@import "./../components/title-breadcrumbs";
+@import "./Services-page/services-section";
+
+
+//ContactPage
+@import "./../components/title-breadcrumbs";
+@import "./Contact-page/map";
+
+//Projects
+@import "./../components/title-breadcrumbs";
+@import "./Projects-page/main-content";
+
+//ProjectDetails
+@import "./Project-details-page/project-details";
+
+//ServiceDetails
+@import "./Service-details-page/service-details";
+@import "./Service-details-page/service-form";
+
+
+

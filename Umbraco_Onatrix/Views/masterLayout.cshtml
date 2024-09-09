@@ -1,0 +1,35 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	var pageTitle = !string.IsNullOrEmpty(ViewBag.Title) ? $"Onatrix - {ViewBag.Title}" : "Onatrix - Grow Your Business Faster";
+}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Fidde"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" >
+		<link rel="stylesheet" href="/css/main.min.css">
+		<script defer src="/scripts/script.js"></script>
+	<title>@pageTitle</title>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<header id="header">
+				header
+			</header>
+
+			<main>
+				@RenderBody()
+			</main>
+
+			<footer>
+				footer
+			</footer>
+		</div>
+		
+	</body>
+</html>

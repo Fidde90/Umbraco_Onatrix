@@ -1,0 +1,88 @@
+#about-us {
+    margin-top: 80px;
+    padding-bottom:80px;
+    position: relative;
+
+    @media(min-width:700px){
+        padding-bottom:530px;
+    }
+
+    @media(min-width:900px){
+        padding-bottom:80px;
+    }
+
+
+    .content {
+        padding-top: 20px;
+        max-width: 670px;
+
+        @media(min-width:900px){
+            width:100%;
+            max-width: 370px;
+        }
+     
+        @media(min-width:1150px){
+            width:100%;
+            max-width: 570px;
+        }
+
+        @media(min-width:1230px){
+            width:100%;
+            max-width: 670px;
+        }
+
+        .section-title{
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        img {
+            display: block;
+            margin: 10px 0;
+        }
+
+        @include tablet { 
+
+            .section-title{
+                text-align: left;
+            }
+
+            img {
+                margin: 0;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .form-card{
+        @media(min-width:700px){
+            position: absolute;
+            top: 300px;
+            right: 10px;
+            max-width: 450px;
+        }
+
+        @include tablet{
+            width: 470px;
+        }
+    
+        @media(min-width:900px){
+            top: -160px;
+            right: 10px;
+        }
+    
+        @media(min-width:1255px){
+            top: -160px;
+            right: 0;
+        }
+    
+        @include ultra-wide{
+            top: -180px;
+            left:910px;
+        }
+    }
+}

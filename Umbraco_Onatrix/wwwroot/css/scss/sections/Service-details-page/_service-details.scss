@@ -1,0 +1,95 @@
+#service-details {
+
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+
+        @include tablet {
+            flex-direction: row;
+            gap: 50px;
+        }
+
+        .service-info {
+
+            padding-top: 80px;
+
+            @include tablet {
+                max-width: 770px;
+                width: 100%;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            .title {
+                font-size: 25px;
+                margin-top: 40px;
+            }
+
+            .info {
+                @include small-text;
+                color: var(--color-default);
+            }
+
+            .list {
+                padding-left: 15px;
+                margin: 0;
+
+                li {
+                    margin-bottom: 15px;
+
+                    &::marker {
+                        color: var(--color-secondary);
+                    }
+                }
+            }
+        }
+
+        .side-bar {
+            border-top: 1px solid var(--color-border-gray);
+            margin-top: 30px;
+
+            @include tablet {
+                border-top: none;
+                width: 340px;
+                padding-top: 30px;
+                border-right: 1px solid var(--color-border-gray);
+                border-bottom: none;
+                border-top: none;
+                border-left: none;
+                padding-left: 0;
+                padding-right: 40px;
+                margin-bottom:0;
+            }
+
+            .side-card {
+                padding: 15px 0;
+                max-width: 300px;
+                width: 100%;
+
+                img {
+                    width: 300px;
+                    height: 168px;
+                    object-fit: cover;
+                }
+
+                h4 {
+                    margin-top: 7px;
+                    margin-bottom: 25px;
+                    max-width: 150px;
+                    color: var(--color-deafult);
+                }
+
+                .info {
+                    @include small-text;
+                    margin-top: 25px;
+                }
+            }
+        }
+
+        @include ultra-wide {
+            max-width: 1200px;
+        }
+    }
+}

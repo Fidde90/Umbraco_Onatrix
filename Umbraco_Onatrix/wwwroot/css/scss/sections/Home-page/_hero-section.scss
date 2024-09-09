@@ -1,0 +1,51 @@
+#hero-section {
+    @include header-space;
+    
+    .container-fluid{
+        text-align: center;
+        background-color: #F1F0F5;
+        padding:50px 0;
+
+
+        @media(min-width:910px) {
+            background-image: url("/images/hero.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: calc(55% + 20vw) center;
+        }
+ 
+        @include desktop {
+            background-position: 0;    
+        }
+    
+        @include ultra-wide{
+           height:600px;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+    
+        @include tablet {
+            height:550px;
+            h1 {
+                font-size: 70px;
+            }
+    
+            .content {
+       
+                text-align: left;
+                width: 550px;
+    
+                p {
+                    width: 500px;
+                }
+    
+                a {
+                    margin-top: 15px;
+                }
+            }
+        }
+
+    }   
+}

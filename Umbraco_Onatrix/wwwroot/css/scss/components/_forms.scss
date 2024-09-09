@@ -1,0 +1,20 @@
+.search-form{
+    input {
+        padding:2px;
+        border-radius: 3px;
+        border:1px solid var(--color-border-gray);
+        overflow: hidden;
+        outline: none;
+       
+        &::placeholder{
+            color:var(--color-border-gray);
+        }
+    }
+
+    i{
+        position:absolute;
+        top:5px;
+        right:-25px;
+        font-size: 18px;
+    }
+}

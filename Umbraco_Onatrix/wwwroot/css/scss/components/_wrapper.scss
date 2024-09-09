@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    /*
+    display:grid;
+    grid-template-rows: 1fr auto;
+  
+    @include desktop {
+        grid-template-rows: auto auto 1fr auto;
+    }
+
+    @include ultra-wide{
+        grid-template-rows: auto auto 1fr auto;
+    }
+     */
+}

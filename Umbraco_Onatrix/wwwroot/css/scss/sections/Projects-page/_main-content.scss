@@ -1,0 +1,76 @@
+#main-content {
+
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+
+        @include desktop{
+            flex-direction: row;
+            gap:60px;
+        }
+
+        .articles {
+            padding: 30px 0;
+
+            @include desktop{
+            padding: 60px 0;
+                padding-bottom: 110px;
+            }
+
+            .article-box {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                max-width: 770px;
+                padding-bottom: 25px;
+                padding-top: 25px;
+                border-bottom:1px solid var(--color-border-gray);
+
+                @include tablet {
+                    flex-direction: row;
+                }
+
+                @include desktop{
+                    width: 770px;
+                }
+    
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                .text-info {
+
+                    h4 {
+                        margin: 0;
+                    }
+
+                    p,
+                    a {
+                        @include small-text;
+                    }
+
+                    a {
+                        margin-top: 25px;
+                        display: inline-flex;
+                        align-items: center;
+                        text-decoration: none;
+                        color: var(--color-default);
+                        font-weight: 600;
+
+                        i {
+                            color: var(--color-secondary);
+                            margin-left: 5px;
+                            font-size: 9px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @include ultra-wide{
+            max-width:1200px;
+        }
+    }
+}

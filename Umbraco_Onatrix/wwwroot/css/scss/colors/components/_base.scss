@@ -1,0 +1,14 @@
+body{
+    color:var(--color-primary);
+}
+
+span{
+    color:var(--color-secondary);
+    font-weight: 600;
+}
+
+.bg-secondary{
+    span{
+        color:var(--color-primary);
+    }
+}

@@ -1,0 +1,72 @@
+#great-reviews {
+    margin-bottom: 100px;
+    overflow-x: hidden;
+
+    .container {
+        position: relative;
+        height: 511px;
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+
+            .text-ratings {
+
+                .paragraph {
+                    color: #999999;
+                    font-style: italic;
+                    font-size: 20px;
+                    max-width: 511px;
+                    margin: 0 auto;
+                }
+
+                .stars {
+                    font-size: 0.84rem;
+                    margin-bottom: 20px;
+                }
+
+                .writer {
+                    padding-bottom: 5px;
+                    @include small-text;
+                }
+
+                .company-text {
+                    font-size: 20px;
+                    font-style: italic;
+                }
+            }
+
+            @include desktop {
+                text-align: left;
+
+                h2 {
+                    max-width: 400px;
+                }
+
+                .text-ratings {
+                    .paragraph {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        img {
+            display: none;
+            position: absolute;
+
+            @include desktop {
+                display: block;
+                top: 0;
+                right: -360px;
+            }
+        }
+
+        @include ultra-wide {
+            max-width: 1200px;
+        }
+    }
+}

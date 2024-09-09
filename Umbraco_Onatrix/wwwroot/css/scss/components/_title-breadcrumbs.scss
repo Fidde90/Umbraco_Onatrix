@@ -1,0 +1,50 @@
+#title-breadcrumbs {
+    @include header-space;
+    height: 245px;
+
+    background-image: url("/images/globe.png");
+
+    @include desktop {
+        background-image: url("/images/globe.png"), url("/images/upside down globe.png");
+    }
+
+    background-repeat: no-repeat,
+    no-repeat;
+    background-position:bottom left,
+    top right;
+
+    .container {
+        @include display-column;
+        height: 100%;
+
+        .breadcrumbs {
+            @include center;
+            flex-wrap: wrap;
+            font-size: 14px;
+
+            i {
+                color: var(--color-default);
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            p {
+                padding: 0;
+                margin-right: 10px;
+            }
+
+            a {
+                text-decoration: none;
+
+                &:visited {
+                    color: var(--color-secondary);
+                }
+
+                &:hover {
+                    color: var(--color-default);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@mixin center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin position-left{
+    display:flex;
+    justify-content: left;
+    align-items: center;
+}
+
+@mixin position-right{
+    display:flex;
+    justify-content: right;
+    align-items: center;
+}
+
+@mixin space-between{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+@mixin display-column-evenly{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+@mixin display-column{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin header-space{
+    margin-top:85px;
+        
+    @include desktop{
+        margin-top:135px;
+    }
+}
