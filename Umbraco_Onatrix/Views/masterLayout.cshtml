@@ -1,35 +1,53 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-	var pageTitle = !string.IsNullOrEmpty(ViewBag.Title) ? $"Onatrix - {ViewBag.Title}" : "Onatrix - Grow Your Business Faster";
+    var root = UmbracoHelper.ContentAtRoot();
+    var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
+
+    string siteNameSetting = settings?.Value<string>("siteName")!;
+    var siteName = !string.IsNullOrEmpty(siteNameSetting) ? siteNameSetting : "Onatrix";
+    string siteTaglineSetting = settings?.Value<string>("siteTagline")!;
+    var siteTagline = !string.IsNullOrEmpty(siteTaglineSetting) ? siteTaglineSetting : "Grow Your Business Faster";
+
+    string pageTitle = !string.IsNullOrEmpty(ViewBag.Title) ? $"{siteName} - {ViewBag.Title}" : $"{siteName} - {siteTagline}";
+
+    //metadata
+    IEnumerable<string> keywordList = settings?.Value<IEnumerable<string>>("siteKeywords") ?? null!;
+    string keywords = keywordList != null ? String.Join(", ", keywordList) : "";
+    string siteDescriptionSetting = settings?.Value<string>("siteDescription")!;
+    var siteDescription = !string.IsNullOrEmpty(siteDescriptionSetting) ? siteDescriptionSetting : "a website about financial help";
+    string authorSetting = settings?.Value<string>("siteAuthor")!;
+    var siteAuthor = !string.IsNullOrEmpty(authorSetting) ? authorSetting : "Onatrix team";
 }
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="Fidde"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="UTF-8" >
-		<link rel="stylesheet" href="/css/main.min.css">
-		<script defer src="/scripts/script.js"></script>
-	<title>@pageTitle</title>
-	</head>
-	<body>
+<head>
+    <meta name="description" content="@siteDescription">
+    <meta name="keywords" content="@keywords">
+    <meta name="author" content="@siteAuthor">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/main.min.css">
+    <script defer src="/scripts/script.js"></script>
+    <title>@pageTitle</title>
+</head>
+<body>
 
-		<div class="wrapper">
-			<header id="header">
-				header
-			</header>
+    <div class="wrapper">
+        <header id="header">
+            header
+        </header>
 
-			<main>
-				@RenderBody()
-			</main>
+        <main>
+            @RenderBody()
+        </main>
 
-			<footer>
-				footer
-			</footer>
-		</div>
-		
-	</body>
+        <footer>
+            footer
+        </footer>
+    </div>
+
+</body>
 </html>
