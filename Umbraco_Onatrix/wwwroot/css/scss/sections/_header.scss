@@ -35,6 +35,8 @@
                 }
 
                 a {
+                    text-decoration: none;
+
                     &::after {
                         content: "";
                     }
@@ -52,7 +54,7 @@
         background-color: white;
         @include center;
         box-shadow: 1px 1px 1px 1px var(--color-border-gray);
-        
+
         .container {
             display: flex;
             justify-content: space-between;
@@ -63,14 +65,14 @@
         }
 
         .nav-bar {
-            display:none;
+            display: none;
         }
 
         .btn-menu {
             height: 40px;
             width: 40px;
             font-size: 1rem;
-            margin-right:30px;
+            margin-right: 30px;
         }
 
         ul {
@@ -85,21 +87,21 @@
         @include tablet {
 
             .btn-menu {
-                margin-right:0px;
+                margin-right: 0px;
             }
 
             .search-bar {
                 display: none;
             }
 
-            .nav-bar{
+            .nav-bar {
                 @include center;
                 justify-content: space-between;
                 width: 65%;
             }
 
             ul {
-                @include center;           
+                @include center;
                 list-style: none;
 
                 .link {
@@ -107,8 +109,8 @@
                     color: var(--color-primary);
                     font-weight: bold;
 
-                    &:hover{
-                        text-decoration:underline;
+                    &:hover {
+                        text-decoration: underline;
                     }
                 }
             }
@@ -119,27 +121,27 @@
                 display: none;
             }
 
-            .search-bar{
-                display:block;
+            .search-bar {
+                display: block;
                 position: relative;
                 margin-right: 25px;
             }
 
-            .nav-bar{
+            .nav-bar {
                 @include center;
                 justify-content: space-between;
                 width: 65%;
             }
 
             ul {
-                @include center;           
+                @include center;
                 list-style: none;
 
                 .link {
                     text-decoration: none;
                     color: var(--color-primary);
-                    font-weight: bold;             
-                }   
+                    font-weight: bold;
+                }
             }
         }
     }

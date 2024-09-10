@@ -564,6 +564,9 @@ h6 {
   border-right: 1px solid var(--color-primary-light);
   padding-right: 17px;
 }
+#header .top-bar .icons .icon a {
+  text-decoration: none;
+}
 #header .top-bar .icons .icon a::after {
   content: "";
 }
