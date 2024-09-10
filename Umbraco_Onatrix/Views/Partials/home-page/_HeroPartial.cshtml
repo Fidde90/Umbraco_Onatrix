@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var backgroundImageUrl = Model?.Value<IPublishedContent>("BackgroundImage")!.Url() ?? null;
+    var backgroundImage = !string.IsNullOrEmpty(backgroundImageUrl) ? backgroundImageUrl : "";
+    var buttonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("buttonColor")!.Label.ToLower() ?? null;
+}
+<section id="hero-section">
+    <div class="container-fluid" style="background-image:url('@backgroundImage')">
+        <div class="container">
+            <div class="content">
+                <h1>@Model!.Value("heading")</h1>
+                <p>@Model!.Value("paragraph")</p>
+                <a href="@Model!.Value("buttonLink")" class='btn-@buttonColor'>@Model!.Value("buttonText")</a>
+            </div>
+        </div>
+    </div>
+</section>

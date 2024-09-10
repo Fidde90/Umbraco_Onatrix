@@ -695,7 +695,6 @@ h6 {
 }
 @media (min-width: 910px) {
   #hero-section .container-fluid {
-    background-image: url("/images/hero.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: calc(55% + 20vw) center;
