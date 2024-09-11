@@ -2,20 +2,30 @@
 @using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
+    var root = UmbracoHelper.ContentAtRoot();
+    var home = root?.FirstOrDefault(x => x.ContentType.Alias == "homePage") ?? null;
 
+    var buttonUrl = home?.Value<string>("storyButtonUrl") ?? "#";
+    var buttonColor = home?.Value<ColorPickerValueConverter.PickedColor>("storyButtonColor")?.Label.ToLower() ?? "primary";
+    var imageUrl = home?.Value<IPublishedContent>("storyImage")?.Url() ?? "";
+    var backgroundImageUrl = home?.Value<IPublishedContent>("storyBackgroundImage")?.Url() ?? "";
+    var showStorySection = home?.Value<bool>("displayOurStorySection") ?? false;
 }
 
-<section id="our-story">
-    <div class="container">
-        <div class="content">
-            <h2>We are trusted by more than</h2>
-            <span>4.000+ clients</span>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis molestie nulla. Nam
-                accumsanporttitor arcu,ac tincidunt lectus tincidunt sed.
-            </p>
-            <a href="#" class="btn-primary">Read our story</a>
-            <img src="/images/staff.png" alt="">
+@if (showStorySection)
+{
+    <section id="our-story" style="background-image:url('@backgroundImageUrl')">
+        <div class="container">
+            <div class="content">
+                <h2>@Model?.Value("storyHeader")</h2>
+                <span>@Model?.Value("storySubheading")</span>
+                <p>
+                    @Model?.Value("storyParagraph")
+                </p>
+                <a href="@buttonUrl" class="btn-@buttonColor">@Model?.Value("storyButtonText")</a>
+                <img src="@imageUrl" alt="">
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+

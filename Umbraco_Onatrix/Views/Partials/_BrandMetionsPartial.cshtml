@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var showBrandMetionsSection = Model?.Value<bool>("displayBrandMetionsSection") ?? false;
+    var Image_FreedomBrid = Model?.Value<IPublishedContent>("brandFreedomBird")?.Url() ?? "";
+    var Image_Identity = Model?.Value<IPublishedContent>("brandIdentity")?.Url() ?? "";
+    var Image_Natrual = Model?.Value<IPublishedContent>("brandNatural")?.Url() ?? "";
+    var Image_Simpleaf = Model?.Value<IPublishedContent>("brandSimpleaf")?.Url() ?? "";
+    var Image_Globe = Model?.Value<IPublishedContent>("brandGlobe")?.Url() ?? "";
+    var Image_FossilGroup = Model?.Value<IPublishedContent>("brandFossilGroup")?.Url() ?? "";
+
+}
+
+@if (showBrandMetionsSection)
+{
+    <section id="brand-mentions">
+        <div class="container">
+            <img src="@Image_FreedomBrid" alt="freedombird logo">
+            <img src="@Image_Identity" alt="identity logo">
+            <img src="@Image_Natrual" alt="natural logo">
+            <img src="@Image_Simpleaf" alt="simpleleaf logo">
+            <img src="@Image_Globe" alt="globe logo">
+            <img src="@Image_FossilGroup" alt="fossilgroup logo">
+        </div>
+    </section>
+}

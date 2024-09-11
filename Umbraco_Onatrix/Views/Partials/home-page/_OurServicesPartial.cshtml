@@ -3,11 +3,12 @@
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
     var showOurServicesSection = Model?.Value<bool>("dispalyOurServicesSection") ?? false;
+    var backgroundColor = Model?.Value<ColorPickerValueConverter.PickedColor>("ourServicesBackgroundColor")?.Label.ToLower() ?? "gray";
 }
 
 @if (showOurServicesSection)
 {
-    <section id="our-services" class="bg-gray">
+    <section id="our-services" class="bg-@backgroundColor">
         <div class="container">
             <div class="section-title">
                 <span>@Model?.Value("ourServicesSectionTitle")</span>

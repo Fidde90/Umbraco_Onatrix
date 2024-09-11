@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var home = root?.FirstOrDefault(x => x.ContentType.Alias == "homePage") ?? null;
+
+    var imageUrl = home?.Value<IPublishedContent>("successImage")?.Url() ?? "";
+    var backgroundImageUrl = home?.Value<IPublishedContent>("successBackgroundImage")?.Url() ?? "";
+    var showSucessSection = home?.Value<bool>("displaySuccessSection") ?? false;
+    var backgroundColor = home?.Value<ColorPickerValueConverter.PickedColor>("successBackgroundColor")?.Label.ToLower() ?? "primary";
+}
+
+@if (showSucessSection)
+{
+    <section id="success-stories">
+        <div class="background-box bg-@backgroundColor"></div>
+        <div class="container" style="background-image:url('@backgroundImageUrl')">
+            <div class="section-title">
+                <span>@Model?.Value("successSectionTitle")</span>
+                <h2>@Model?.Value("successHeading")</h2>
+            </div>
+            <div class="numbers">
+                <div class="nr-box">
+                    <span>@Model?.Value("sucessServedCustomersNr")</span>
+                    <p>@Model?.Value("sucessServedCustomersText")</p>
+                </div>
+                <div class="nr-box">
+                    <span>@Model?.Value("sucessCompletedProjectsNr")</span>
+                    <p>@Model?.Value("sucessCompletedProjectsText")</p>
+                </div>
+                <div class="nr-box">
+                    <span>@Model?.Value("sucessAmountOfBranchesNr")</span>
+                    <p>@Model?.Value("sucessAmountOfBranchesText")</p>
+                </div>
+            </div>
+            <img src="@imageUrl" alt="picture of a good meeting">
+        </div>
+    </section>
+}
