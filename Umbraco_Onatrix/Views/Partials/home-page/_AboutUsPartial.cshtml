@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var showAboutSection = Model.Value<bool>("displayAboutSection");
+    var showAboutQuote = Model.Value<bool>("displayAboutQuote");
+    var showAboutForm = Model.Value<bool>("displayAboutFormcard");
+
+    var signatureImageUrl = Model?.Value<IPublishedContent>("aboutSignatureImage")?.Url();
+    var signatureImage = !string.IsNullOrEmpty(signatureImageUrl) ? signatureImageUrl : "";
+}
+
+@if (showAboutSection)
+{
+    <section id="about-us">
+        <div class="container">
+            <div class="content">
+                <div class="section-title">
+                    <span>@Model?.Value("aboutSectionTitle")</span>
+                    <h2>@Model?.Value("aboutHeading")</h2>
+                </div>
+
+                @if (showAboutQuote)
+                {
+                    <p class="quote">
+                        “@Model?.Value("aboutQuote")”
+                    </p>
+                }
+
+                <p class="small-text">
+                    @Model?.Value("aboutParagraph")
+                </p>
+                <img src="@signatureImage" alt="signature">
+                <p>@Model?.Value("aboutSigantureCaption")</p>
+            </div>
+
+            @if (showAboutForm)
+            {
+                <div class="form-card">
+                    <div class="top bg-primary">
+                        <h3>Request a call back</h3>
+                    </div>
+                    <form class="form">
+                        <p class="small-text">
+                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur
+                            excepteur sint occaecat
+                        </p>
+                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="Email Adderss">
+                        <input type="text" placeholder="Phone">
+                        <select>
+                            <option>Financial consulting</option>
+                        </select>
+                        <button class="btn-accent">Submit</button>
+                    </form>
+                </div>
+            }
+        </div>
+    </section>
+}
+

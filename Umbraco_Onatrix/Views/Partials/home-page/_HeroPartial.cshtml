@@ -2,18 +2,23 @@
 @using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-    var backgroundImageUrl = Model?.Value<IPublishedContent>("BackgroundImage")!.Url() ?? null;
-    var backgroundImage = !string.IsNullOrEmpty(backgroundImageUrl) ? backgroundImageUrl : "";
-    var buttonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("buttonColor")!.Label.ToLower() ?? null;
+    var backgroundImageUrl = Model?.Value<IPublishedContent>("heroBackgroundImage")?.Url();
+    var heroBackgroundImage = !string.IsNullOrEmpty(backgroundImageUrl) ? backgroundImageUrl : "";
+    var heroButtonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("heroButtonColor")?.Label.ToLower() ?? "";
+    var showHero = Model!.Value<bool>("displayHeroSection");
 }
-<section id="hero-section">
-    <div class="container-fluid" style="background-image:url('@backgroundImage')">
-        <div class="container">
-            <div class="content">
-                <h1>@Model!.Value("heading")</h1>
-                <p>@Model!.Value("paragraph")</p>
-                <a href="@Model!.Value("buttonLink")" class='btn-@buttonColor'>@Model!.Value("buttonText")</a>
+
+@if (showHero)
+{
+    <section id="hero-section">
+        <div class="container-fluid" style="background-image:url('@heroBackgroundImage')">
+            <div class="container">
+                <div class="content">
+                    <h1>@Model?.Value("heroHeading")</h1>
+                    <p>@Model?.Value("heroParagraph")</p>
+                    <a href="@Model?.Value("heroButtonUrl")" class='btn-@heroButtonColor'>@Model?.Value("heroButtonText")</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}

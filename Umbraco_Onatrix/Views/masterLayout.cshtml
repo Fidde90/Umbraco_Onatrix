@@ -9,6 +9,7 @@
     string siteTaglineSetting = settings?.Value<string>("siteTagline")!;
     var siteTagline = !string.IsNullOrEmpty(siteTaglineSetting) ? siteTaglineSetting : "Grow Your Business Faster";
 
+    ViewBag.Title = "Home";
     string pageTitle = !string.IsNullOrEmpty(ViewBag.Title) ? $"{siteName} - {ViewBag.Title}" : $"{siteName} - {siteTagline}";
 
     //metadata
