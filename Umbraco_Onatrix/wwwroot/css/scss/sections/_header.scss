@@ -1,3 +1,4 @@
+@import "../components/_components.scss";
 #header {
     position: fixed;
     z-index: 15;
@@ -113,6 +114,11 @@
                         text-decoration: underline;
                     }
                 }
+
+                .active {
+                    color: var(--color-secondary);
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -125,23 +131,6 @@
                 display: block;
                 position: relative;
                 margin-right: 25px;
-            }
-
-            .nav-bar {
-                @include center;
-                justify-content: space-between;
-                width: 65%;
-            }
-
-            ul {
-                @include center;
-                list-style: none;
-
-                .link {
-                    text-decoration: none;
-                    color: var(--color-primary);
-                    font-weight: bold;
-                }
             }
         }
     }

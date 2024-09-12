@@ -1,24 +1,30 @@
 /*inline-block gör att dom går att styla och att dom ändå ligger bredvid varann och inte under varann som en block element hade gjort */
-a{
+a {
     display: inline-block;
     @include text;
     font-size: 1em;
     text-decoration: underline;
 
-    &:hover{
+    &:hover {
         text-decoration: none;
     }
 
-    &[target="_blank"]{
-        &::after{
-            content:'\f08e';
-            font-family:"Font Awesome 6 Free";
+    &[target="_blank"] {
+        &::after {
+            content: '\f08e';
+            font-family: "Font Awesome 6 Free";
             display: inline-block;
             vertical-align: middle;
             font-size: 0.8em;
             margin-left: 0.4em;
-            margin-top:-0.9em;
-            font-weight:600;
+            margin-top: -0.9em;
+            font-weight: 600;
         }
     }
 }
+
+
+    .active {
+        color: var(--color-secondary);
+    }
+  

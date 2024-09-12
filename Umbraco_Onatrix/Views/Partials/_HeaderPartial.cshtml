@@ -1,12 +1,18 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @{
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
+
     var root = UmbracoHelper.ContentAtRoot();
     var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
-
     var siteLogoUrl = settings?.Value<IPublishedContent>("siteLogo")!.Url() ?? null;
-
 }
 
 <section class="top-bar bg-primary">
@@ -35,19 +41,20 @@
     <div class=" container">
         @if (!string.IsNullOrEmpty(siteLogoUrl))
         {
-            <a href="/Homepage.html"><img src="@siteLogoUrl" alt="site-logo"></a>
+            <a href="/"><img src="@siteLogoUrl" alt="site-logo"></a>
         }
 
-        <ul class="nav-bar">
-            <li><a class="link" href="/Aboutpage.html">About</a></li>
-            <li><a class="link" href="/Servicespage.html">Services</a></li>
-            <li><a class="link" href="/Projectspage.html">Projects</a></li>
-            <li><a class="link" href="/Contactpage.html">Contact</a></li>
-            <form class="search-bar search-form" method="post">
-                <input class="" type="text">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </form>
-        </ul>
+        @if (selection?.Length > 0)
+        {
+            <ul class="nav-bar">
+                @foreach (var item in selection)
+                {
+                    <li>
+                        <a class="link @(item.IsAncestorOrSelf(Model) ? "active" : null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                    </li>
+                }
+            </ul>
+        }
         <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
     </div>
 </section>
