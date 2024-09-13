@@ -18,7 +18,8 @@
 <section class="top-bar bg-primary">
     <div class="container">
         <div class="address">Klarabergsviadukten 90, 111 64 Stockholm</div>
-        <div class="icons">
+        @await Html.PartialAsync("/Views/Partials/Shared/_SocialMediaPartials.cshtml")
+       @*  <div class="icons">
             <div class="icon">
                 <a href="https://www.facebook.com" target="_blank">
                     <i class="fa-brands fa-facebook-f"></i>
@@ -34,7 +35,7 @@
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
             </div>
-        </div>
+        </div> *@
     </div>
 </section>
 <section class="nav-section">
