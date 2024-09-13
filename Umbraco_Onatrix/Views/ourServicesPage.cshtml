@@ -1,0 +1,49 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "masterLayout.cshtml";
+    ViewBag.Title = "Our Services";
+    var title = Model.Value<string>("pageHeading");
+
+    var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?
+        .ChildrenOfType("serviceItemTemplate")?
+        .Where(x => x.IsVisible());
+}
+
+@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml");
+
+<section id="services-section" class="bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>@title</h2>
+        </div>
+        <div class="cards">
+
+            @if (selection != null)
+            {
+                @foreach (var item in selection)
+                {
+                    var serviceImage = item.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "#";
+                    var servicePreamble = item.Value<string>("preamble") ?? $"{@item.Name()}";
+
+                    <a href="@item.Url()" class="card">
+                        <div class="content">
+                            <h4>@item.Name()</h4>
+                            <img src="@serviceImage" alt="service image">
+                            <p class="small-text">
+                                @servicePreamble
+                            </p>
+                        </div>
+                    </a>
+                }
+            }
+
+        </div>
+        <div class="buttons">
+            <button class="prev-btn">Prev</button>
+            <button class="page-btn">1</button>
+            <button class="page-btn">2</button>
+            <button class="prev-btn">Next</button>
+        </div>
+    </div>
+</section>
