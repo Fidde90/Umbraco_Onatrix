@@ -1,5 +1,4 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
     var articleImage = Model.Value<IPublishedContent>("ReviewsSectionImage")?.Url() ?? "";

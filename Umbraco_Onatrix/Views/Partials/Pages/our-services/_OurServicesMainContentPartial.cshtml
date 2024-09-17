@@ -1,5 +1,4 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
     var title = Model.Value<string>("pageHeading");
     var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?.ChildrenOfType("serviceItemTemplate")?.Where(x => x.IsVisible());

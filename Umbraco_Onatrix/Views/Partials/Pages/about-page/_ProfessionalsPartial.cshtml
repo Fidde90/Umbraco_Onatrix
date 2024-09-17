@@ -1,85 +1,22 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-    var showProfessionals = Model.Value<bool>("displayProfessionals");
-    var articleImage = Model.Value<IPublishedContent>("articleImage")?.Url() ?? "";
-    var backgroundColor = Model.Value<ColorPickerValueConverter.PickedColor>("articleBackgroundColor")?.Label ?? "light";
+    var showProfessionals = Model.Value<bool>("dispalyProfessionals");
+    var backgroundColor = Model?.Value<ColorPickerValueConverter.PickedColor>("professionalsBackgroundColor")?.Label ?? "light";
+    var cardsList = Model?.Value<IEnumerable<BlockListItem>>("professionalCards")?.ToList() ?? null;
 }
 
 @if (showProfessionals)
 {
-    <section id="our-expert" class="bg-light">
+    <section id="our-expert" class="bg-@backgroundColor">
         <div class="container">
             <div class="section-title">
-                <span>Our expert</span>
-                <h2>A team of professionals with years of experience</h2>
+                <span>@Model?.Value("professionalsSectionTitle")</span>
+                <h2>@Model?.Value("professionalsHeading")</h2>
             </div>
-            <div class="cards">
-                <a href="#" class="expert-card-large">
-                    <div class="content">
-                        <img src="/images/Brandon Newton.png" alt="image of brandon newton">
-                        <div class="text">
-                            <h4>Brandon Newton</h4>
-                            <p class="small-text">Financial Advisor at Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="expert-card-large">
-                    <div class="content">
-                        <img src="/images/AJ Carter.png" alt="imgae of aj carter">
-                        <div class="text">
-                            <h4>AJ Carter</h4>
-                            <p class="small-text">Financial Advisor at Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="expert-card-large">
-                    <div class="content">
-                        <img src="/images/Aron Lambert.png" alt="image of aron lambert">
-                        <div class="text">
-                            <h4>Aaron Lambert</h4>
-                            <p class="small-text">Business Specialist at Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="expert-card-small">
-                    <div class="content">
-                        <img src="/images/Tina Fox small image.png" alt="image of tina fox">
-                        <div class="text">
-                            <h5>Tina Fox</h5>
-                            <p class="small-text">CEO & Founder at Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="expert-card-small">
-                    <div class="content">
-                        <img src="/images/Brandon Keff.png" alt="image of brandon kerr">
-                        <div class="text">
-                            <h5>Brandon Kerr</h5>
-                            <p class="small-text">CFO & Co-Founderat Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="expert-card-small">
-                    <div class="content">
-                        <img src="/images/Miranda Dayton.png" alt="image of aron lambert">
-                        <div class="text">
-                            <h5>Miranda Dayton</h5>
-                            <p class="small-text">Head of HR at Onatrix</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="expert-card-small">
-                    <div class="content">
-                        <img src="/images/Kevin Grander.png" alt="image of aron lambert">
-                        <div class="text">
-                            <h5>Kevin Gardner</h5>
-                            <p class="small-text">Banking Advisor at Swedbank</p>
-                        </div>
-                    </div>
-                </a>
+            <div class="professional-cards">
+                @await Html.PartialAsync("/Views/Partials/Shared/_LargeProfessionalCardPartial.cshtml")
+                @await Html.PartialAsync("/Views/Partials/Shared/_SmallProfessionalCardPartial.cshtml")
             </div>
         </div>
     </section>
