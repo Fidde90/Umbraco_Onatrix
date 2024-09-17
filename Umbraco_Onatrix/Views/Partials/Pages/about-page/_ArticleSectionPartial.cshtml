@@ -7,16 +7,19 @@
     var backgroundColor = Model.Value<ColorPickerValueConverter.PickedColor>("articleBackgroundColor")?.Label ?? "light";
 }
 
-<article id="article" class="bg-@backgroundColor">
-    <div class="container">
-        <figure>
-            <div class="image">
-                <img src="@articleImage" alt="image of Tina Fox">
-                <figcaption>@Model.Value("imageCaption")</figcaption>
-            </div>
-            <div class="text">
-                @Model.Value("articleText")
-            </div>
-        </figure>
-    </div>
-</article>
+@if (showArticle)
+{
+    <article id="article" class="bg-@backgroundColor">
+        <div class="container">
+            <figure>
+                <div class="image">
+                    <img src="@articleImage" alt="image of Tina Fox">
+                    <figcaption>@Model.Value("imageCaption")</figcaption>
+                </div>
+                <div class="text">
+                    @Model.Value("articleText")
+                </div>
+            </figure>
+        </div>
+    </article>
+}

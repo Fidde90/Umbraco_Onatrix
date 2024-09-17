@@ -5,7 +5,8 @@
 	ViewBag.Title = @Model.Value("pageTitle") ?? "About us";
 }
 
-@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml");
-@await Html.PartialAsync("/Views/Partials/Pages/about-page/_ArticleSectionPartial.cshtml");
-@await Html.PartialAsync("/Views/Partials/Pages/about-page/_ReviewsPartial.cshtml");
-@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml");
+@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/about-page/_ArticleSectionPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/about-page/_ReviewsPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/about-page/_ProfessionalsPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml")
