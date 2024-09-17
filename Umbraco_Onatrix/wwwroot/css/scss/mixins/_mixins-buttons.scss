@@ -22,21 +22,15 @@
     }
  }
 
- @mixin btn-circle{
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+@mixin btn-circle {
+    @include btn;
+    @include center;
+    color: var(--color-default);
+    padding: 0;
+    height: 55px;
+    width: 55px;
     border-radius: 50%;
-    border:1px solid;
-    transition:0.25s;
-    text-decoration: none !important;
-    outline: none;
+    border-color: var(--color-border-gray);
     -webkit-tap-highlight-color: transparent;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    background-color: transparent;
-    
-    &:hover{
-        transition: 0.25s;
-        text-decoration: none;
-    }
- }
+}

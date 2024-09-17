@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var showOurServicesSection = Model?.Value<bool>("dispalyOurServicesSection") ?? false;
+    var backgroundColor = Model?.Value<ColorPickerValueConverter.PickedColor>("ourServicesBackgroundColor")?.Label.ToLower() ?? "gray";
+    var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?.ChildrenOfType("serviceItemTemplate")?.Where(x => x.IsVisible()).Take(6);
+    ViewData["OurServicesCards"] = selection;
+}
+
+@if (showOurServicesSection)
+{
+    <section id="our-services" class="bg-@backgroundColor">
+        <div class="container">
+            <div class="section-title">
+                <span>@Model?.Value("ourServicesSectionTitle")</span>
+                <h2>@Model?.Value("ourServicesSectionHeader")</h2>
+            </div>
+            <div class="cards">
+                @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
+            </div>
+        </div>
+    </section>
+}

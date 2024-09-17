@@ -1,0 +1,64 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
+    var socialMediaPlatforms = settings?.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("socialMediaPlatforms") ?? null;
+}
+
+@if (socialMediaPlatforms != null)
+{
+    <div class="icons">
+        @foreach (var media in socialMediaPlatforms)
+        {
+            var platformName = media?.Content?.Value<string>("logo");
+            var platformUrl = media?.Content.Value<string>("url") ?? "#";
+
+            switch (platformName?.ToLower())
+            {
+                case "facebook":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                    break;
+
+                case "instagram":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    break;
+
+                case "linkedin":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    break;
+
+                case "tiktok":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                    break;
+
+                case "x(twitter)":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                    break;
+
+                case "youtube":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    break;
+
+                case "snapchat":
+                    <div class="icon">
+                        <a href="@platformUrl" title="@platformUrl" target="_blank" class=""><i class="fa-brands fa-snapchat fa-lg"></i></a>
+                    </div>
+                    break;
+            }
+        }
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var list = (IEnumerable<IPublishedContent>)ViewData["OurServicesCards"]!;
+}
+
+@if (list != null)
+{
+    @foreach (var item in list)
+    {
+        var serviceImage = item.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "#";
+        var servicePreamble = item.Value<string>("preamble") ?? $"{@item.Name()}";
+
+        <a href="@item.Url()" class="service-card">
+            <div class="content">
+                <h4>@item.Name()</h4>
+                <img src="@serviceImage" alt="service image">
+                <p class="small-text">
+                    @servicePreamble
+                </p>
+            </div>
+        </a>
+    }
+}
+
+

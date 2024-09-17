@@ -1,0 +1,60 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var title = Model.Value<string>("pageHeading");
+    var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?.ChildrenOfType("serviceItemTemplate")?.Where(x => x.IsVisible());
+
+    if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
+        currentPage = 1;
+
+    var listLenght = selection?.Count() ?? 0;
+    var pageSize = 6;
+    var pagedItems = selection?.Skip((currentPage - 1) * pageSize).Take(pageSize);
+    ViewData["OurServicesCards"] = pagedItems;
+}
+
+<section id="services-section" class="bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>@title</h2>
+        </div>
+        <div class="cards">
+
+            @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
+
+        </div>
+        <div class="page-buttons">
+            @if (currentPage > 1)
+            {
+                <a href="?page=@(currentPage - 1)" class="prev-next-btn active">Prev</a>
+            }
+            else
+            {
+                <span class="prev-next-btn inactive">Prev</span>
+            }
+
+            @for (int i = 1; i <= Math.Ceiling((decimal)listLenght / pageSize); i++)
+            {
+                if (currentPage == i)
+                {
+                    <a href="?page=@i" class="page-btn active-btn">@i</a>
+                }
+                else
+                {
+                    <a href="?page=@i" class="page-btn">@i</a>
+                }
+        
+            }
+
+            @if (currentPage < Math.Ceiling((decimal)listLenght / pageSize))
+            {
+                <a href="?page=@(currentPage + 1)" class="prev-next-btn active">Next</a>
+            }
+            else
+            {
+                <span class="prev-next-btn inactive">Next</span>
+            }
+          
+        </div>
+    </div>
+</section>

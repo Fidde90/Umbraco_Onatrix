@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var showOurProjectsSection = Model?.Value<bool>("dispalyOurProjectsSection") ?? false;
+    var Image_OneUrl = Model?.Value<IPublishedContent>("ourProjectsImageOne")?.Url() ?? "";
+    var Image_TwoUrl = Model?.Value<IPublishedContent>("ourProjectsImageTwo")?.Url() ?? "";
+    var Image_ThreeUrl = Model?.Value<IPublishedContent>("ourProjectsImageThree")?.Url() ?? "";
+    var Image_FourUrl = Model?.Value<IPublishedContent>("ourProjectsImageFour")?.Url() ?? "";
+}
+
+@if (showOurProjectsSection)
+{
+    <section id="recent-projects" class="ultra-wide">
+        <div class="container">
+            <div class="section-title">
+                <span>@Model?.Value("ourProjectsSectionTitle")</span>
+                <h2>@Model?.Value("ourProjectsHeading")</h2>
+            </div>
+        </div>
+        <div class="images">
+            <div class="image">
+                <img src="@Image_OneUrl" alt="people discussing projects">
+            </div>
+            <div class="image">
+                <img src="@Image_TwoUrl" alt="people discussing projects">
+            </div>
+            <div class="image">
+                <img src="@Image_ThreeUrl" alt="people discussing projects">
+            </div>
+            <div class="image">
+                <img src="@Image_FourUrl" alt="people discussing projects">
+            </div>
+        </div>
+    </section>
+}

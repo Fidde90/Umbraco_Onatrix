@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
+    var phone = settings?.Value<string>("phoneNumber") ?? "";
+    var location = settings?.Value<string>("officeLocation") ?? "";
+    var email = settings?.Value<string>("emailAddress") ?? "";
+    var imageUrl = settings?.Value<IPublishedContent>("contactStaffImage")?.Url() ?? null;
+    var backgroundImageUrl = settings?.Value<IPublishedContent>("contactBackgroundImage")?.Url() ?? null;
+
+    var showBrandSection = settings?.Value<bool>("displayPartnersSection") ?? false;
+}
+<section id="contact-section" class="bg-gray">
+    <div class="container">
+        <div class="images">
+            <img class="front-image" src="@imageUrl" alt="">
+            <img class="back-image" src="@backgroundImageUrl" alt="">
+        </div>
+        <div class="contact-information">
+            <h2>Let us know about your next project</h2>
+            <div class="information">
+                <div class="info-box">
+                    <h6><i class="fa-solid fa-location-dot"></i>Office location</h6>
+                    <p>@location</p>
+                </div>
+                <div class="info-box">
+                    <h6><i class="fa-solid fa-phone-flip"></i>Phone number</h6>
+                    <p>@phone</p>
+                </div>
+                <div class="info-box">
+                    <h6><i class="fa-regular fa-envelope"></i>E-mail address</h6>
+                    <p>@email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,17 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "masterLayout.cshtml";
 }
+
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_HeroPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_AboutUsPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_OurServicesPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_OurStoryPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_SuccessStoriesPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/home-page/_OurProjectsPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Shared/_BrandMetionsPartial.cshtml")
+
+
 

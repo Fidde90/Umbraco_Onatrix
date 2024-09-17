@@ -1,0 +1,28 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
+    var partnersList = settings?.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("brandImage") ?? null;
+    var showBrandSection = settings?.Value<bool>("displayPartnersSection") ?? false;
+}
+
+@if (showBrandSection)
+{
+    @if (partnersList != null)
+    {
+        <section id="brand-mentions">
+            <div class="container">
+                @foreach (var brand in partnersList)
+                {
+                    var brandImageUrl = brand?.Content?.Value<IPublishedContent>("brandImage")?.Url();
+                    var webUrl = brand?.Content?.Value<string>("linkUrl");
+                    var description = brand?.Content?.Value<string>("imageDescription");
+
+                    <a href="@webUrl"><img src="@brandImageUrl" alt="@description"></a>
+                }
+            </div>
+        </section>
+    }
+}

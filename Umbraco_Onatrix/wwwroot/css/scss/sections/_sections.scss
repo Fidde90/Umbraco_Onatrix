@@ -1,5 +1,4 @@
 @import "./header";
-@import "./breadcrubms";
 @import "./footer";
 
 //HomePage
@@ -12,22 +11,17 @@
 @import "./Home-page/brand-mentions";
 
 //AboutPage
-@import "./../components/title-breadcrumbs";
 @import "./About-page/article";
 @import "./About-page/great-reviews";
 @import "./About-page/our-expert";
 
 //SevicesPage
-@import "./../components/title-breadcrumbs";
 @import "./Services-page/services-section";
 
-
 //ContactPage
-@import "./../components/title-breadcrumbs";
 @import "./Contact-page/map";
 
 //Projects
-@import "./../components/title-breadcrumbs";
 @import "./Projects-page/main-content";
 
 //ProjectDetails

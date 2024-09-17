@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var home = root?.FirstOrDefault(x => x.ContentType.Alias == "homePage") ?? null;
+
+    var buttonUrl = home?.Value<string>("storyButtonUrl") ?? "#";
+    var buttonColor = home?.Value<ColorPickerValueConverter.PickedColor>("storyButtonColor")?.Label.ToLower() ?? "primary";
+    var imageUrl = home?.Value<IPublishedContent>("storyImage")?.Url() ?? "";
+    var backgroundImageUrl = home?.Value<IPublishedContent>("storyBackgroundImage")?.Url() ?? "";
+    var showStorySection = home?.Value<bool>("displayOurStorySection") ?? false;
+}
+
+@if (showStorySection)
+{
+    <section id="our-story" style="background-image:url('@backgroundImageUrl')">
+        <div class="container">
+            <div class="content">
+                <h2>@Model?.Value("storyHeader")</h2>
+                <span>@Model?.Value("storySubheading")</span>
+                <p>
+                    @Model?.Value("storyParagraph")
+                </p>
+                <a href="@buttonUrl" class="btn-@buttonColor">@Model?.Value("storyButtonText")</a>
+                <img src="@imageUrl" alt="">
+            </div>
+        </div>
+    </section>
+}
+
