@@ -1,11 +1,9 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
     var showAboutSection = Model.Value<bool>("displayAboutSection");
     var showAboutQuote = Model.Value<bool>("displayAboutQuote");
     var showAboutForm = Model.Value<bool>("displayAboutFormcard");
-
     var signatureImageUrl = Model?.Value<IPublishedContent>("aboutSignatureImage")?.Url();
     var signatureImage = !string.IsNullOrEmpty(signatureImageUrl) ? signatureImageUrl : "";
 }
@@ -19,14 +17,12 @@
                     <span>@Model?.Value("aboutSectionTitle")</span>
                     <h2>@Model?.Value("aboutHeading")</h2>
                 </div>
-
                 @if (showAboutQuote)
                 {
                     <p class="quote">
                         “@Model?.Value("aboutQuote")”
                     </p>
                 }
-
                 <p class="small-text">
                     @Model?.Value("aboutParagraph")
                 </p>

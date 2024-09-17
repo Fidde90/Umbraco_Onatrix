@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var showProfessionals = Model.Value<bool>("dispalyProfessionals");
+    var backgroundColor = Model?.Value<ColorPickerValueConverter.PickedColor>("professionalsBackgroundColor")?.Label ?? "light";
+    var cardsList = Model?.Value<IEnumerable<BlockListItem>>("professionalCards")?.ToList() ?? null;
+}
+
+@if (showProfessionals)
+{
+    <section id="our-expert" class="bg-@backgroundColor">
+        <div class="container">
+            <div class="section-title">
+                <span>@Model?.Value("professionalsSectionTitle")</span>
+                <h2>@Model?.Value("professionalsHeading")</h2>
+            </div>
+            <div class="professional-cards">
+                @await Html.PartialAsync("/Views/Partials/Shared/_LargeProfessionalCardPartial.cshtml")
+                @await Html.PartialAsync("/Views/Partials/Shared/_SmallProfessionalCardPartial.cshtml")
+            </div>
+        </div>
+    </section>
+}

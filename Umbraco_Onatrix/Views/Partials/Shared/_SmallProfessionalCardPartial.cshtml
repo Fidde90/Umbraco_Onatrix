@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var cardsList = Model?.Value<IEnumerable<BlockListItem>>("professionalCards")?.ToList() ?? null;
+    List<BlockListItem> smallCardsList = [];
+
+    for (int i = 0; i < cardsList?.Count; i++)
+    {
+        if (cardsList[i].Content.ContentType.Alias == "smallProfessionalCardObject")
+        {
+            smallCardsList.Add(cardsList[i]);
+        }
+    }
+}
+
+@if (smallCardsList != null)
+{
+    for (int i = 0; i < smallCardsList?.Count; i++)
+    {
+        var smallCardImageUrl = smallCardsList[i].Content.Value<IPublishedContent>("professionalSmallCardImage")?.Url();
+
+        <a href="#" class="professional-card-small">
+            <div class="content">
+                <img src="@smallCardImageUrl" alt="@smallCardsList[i].Content.Value("professionalSmallCardAltImagetext")">
+                <div class="text">
+                    <h5>@smallCardsList[i].Content.Value("professionalSmallCardName")</h5>
+                    <p class="small-text">@smallCardsList[i].Content.Value("professionalSmallCardProfession")</p>
+                </div>
+            </div>
+        </a>
+    }
+}
