@@ -1,10 +1,8 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
     var root = UmbracoHelper.ContentAtRoot();
     var home = root?.FirstOrDefault(x => x.ContentType.Alias == "homePage") ?? null;
-
     var imageUrl = home?.Value<IPublishedContent>("successImage")?.Url() ?? "";
     var backgroundImageUrl = home?.Value<IPublishedContent>("successBackgroundImage")?.Url() ?? "";
     var showSucessSection = home?.Value<bool>("displaySuccessSection") ?? false;

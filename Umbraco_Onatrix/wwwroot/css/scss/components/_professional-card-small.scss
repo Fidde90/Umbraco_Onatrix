@@ -1,0 +1,41 @@
+.professional-card-small {
+    background-color: var(--color-light);
+    max-width: 270px;
+    box-shadow: 1px 1px 10px 1px var(--color-border-gray);
+    text-decoration: none;
+    color: var(--color-deafault);
+    border-radius: 3px;
+
+    .content {
+
+        img {
+            max-width: 100%;
+            max-width: 270px;
+            height: 270px;
+        }
+
+        .text {
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            h5 {
+                font-weight: 600;
+                margin-left: 30px;
+                margin-bottom: 0;
+            }
+
+            p {
+                color: #9C9EA6;
+                font-size: 13px;
+                margin-left: 30px;
+                padding-bottom: 0;
+                width: 320px;
+            }
+        }
+    }
+
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 1px 1px 10px 8px var(--color-border-gray);
+    }
+}
