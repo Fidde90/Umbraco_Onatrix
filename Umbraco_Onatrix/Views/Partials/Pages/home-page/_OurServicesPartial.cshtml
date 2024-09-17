@@ -4,6 +4,8 @@
 @{
     var showOurServicesSection = Model?.Value<bool>("dispalyOurServicesSection") ?? false;
     var backgroundColor = Model?.Value<ColorPickerValueConverter.PickedColor>("ourServicesBackgroundColor")?.Label.ToLower() ?? "gray";
+    var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?.ChildrenOfType("serviceItemTemplate")?.Where(x => x.IsVisible()).Take(6);
+    ViewData["OurServicesCards"] = selection;
 }
 
 @if (showOurServicesSection)
@@ -15,72 +17,7 @@
                 <h2>@Model?.Value("ourServicesSectionHeader")</h2>
             </div>
             <div class="cards">
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Risk Management</h4>
-                        <img src="/media/frnk2q4d/risk-management.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Bonds & Commodities</h4>
-                        <img src="/media/ulolabqu/bonds-commodities.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Assurance & Audits</h4>
-                        <img src="/media/qcxinmqv/assurance-img.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Tax and Trusts</h4>
-                        <img src="/media/vq0i0hny/tax-and-trust.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Financial Advisor</h4>
-                        <img src="/media/ysuno5xz/financial-advisor.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
-                <a href="#" class="card">
-                    <div class="content">
-                        <h4>Statistic Advisors</h4>
-                        <img src="/media/mm3kr1e5/statistic-advisors.png" alt="service image">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        </p>
-                    </div>
-                </a>
-
+                @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
             </div>
         </div>
     </section>

@@ -2,7 +2,7 @@
     @include center;
     margin-top: 35px;
 
-    .prev-btn {
+    .prev-next-btn {
         background-color: transparent;
         cursor: pointer;
         padding: 3px;
@@ -11,19 +11,27 @@
         font-size: 18px;
         margin-left: 10px;
         margin-right: 20px;
+    }
 
-        &:active {
-            color: var(---color-gray);
-            transform: scale(0.95);
-        }
+    .inactive {
+        color: darkgray;
+        cursor: default;
     }
 
     .page-btn {
         @include btn-circle;
-        height: 55px;
-        width: 55px;
         margin-right: 10px;
-        border-color: var(--color-border-gray);
         font-weight: 600;
+    }
+
+    .active {
+        color: var(--color-secondary);
+        cursor: pointer;
+    }
+
+    .active-btn {
+        color: var(--color-secondary);
+        border: 2px solid var(--color-secondary);
+        font-weight:900;
     }
 }

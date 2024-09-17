@@ -1,0 +1,38 @@
+.service-card {
+    background-color: var(--color-light);
+    max-width: 370px;
+    height: 420px;
+    box-shadow: 1px 1px 10px 1px var(--color-border-gray);
+    text-decoration: none;
+    color: var(--color-deafault);
+    border-radius: 3px;
+
+    .content {
+        height: 100%;
+        @include display-column-evenly;
+
+        img {
+            max-width: 100%;
+            max-height: 220px;
+        }
+
+        h4 {
+            font-weight: 600;
+            margin-left: 30px;
+            margin-bottom: 0;
+        }
+
+        p {
+            color: var(--color-default);
+            margin-left: 30px;
+            padding-bottom: 0;
+            width: 320px;
+        }
+    }
+
+    &:hover {
+        color: var(--color-default);
+        transform: scale(1.03);
+        box-shadow: 1px 1px 10px 8px var(--color-border-gray);
+    }
+}
