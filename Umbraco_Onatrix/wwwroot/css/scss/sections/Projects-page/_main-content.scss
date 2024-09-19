@@ -4,16 +4,16 @@
         display: flex;
         flex-direction: column-reverse;
 
-        @include desktop{
+        @include desktop {
             flex-direction: row;
-            gap:60px;
+            gap: 60px;
         }
 
         .articles {
             padding: 30px 0;
 
-            @include desktop{
-            padding: 60px 0;
+            @include desktop {
+                padding: 60px 0;
                 padding-bottom: 110px;
             }
 
@@ -25,19 +25,20 @@
                 max-width: 770px;
                 padding-bottom: 25px;
                 padding-top: 25px;
-                border-bottom:1px solid var(--color-border-gray);
+                border-bottom: 1px solid var(--color-border-gray);
 
                 @include tablet {
                     flex-direction: row;
                 }
 
-                @include desktop{
+                @include desktop {
                     width: 770px;
                 }
-    
+
                 img {
-                    max-width: 100%;
-                    height: auto;
+                    width: 100%;
+                    max-width: 370px;
+                    max-height: 200px;
                 }
 
                 .text-info {
@@ -58,19 +59,24 @@
                         text-decoration: none;
                         color: var(--color-default);
                         font-weight: 600;
+                        padding: 2px 4px;
 
                         i {
                             color: var(--color-secondary);
                             margin-left: 5px;
                             font-size: 9px;
                         }
+
+                        &:hover {
+                            box-shadow: 2px 2px 10px 1px var(--color-border-gray);
+                        }
                     }
                 }
             }
         }
 
-        @include ultra-wide{
-            max-width:1200px;
+        @include ultra-wide {
+            max-width: 1200px;
         }
     }
 }

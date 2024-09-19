@@ -1,20 +1,19 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-
+    var tagList = Model.Value<IEnumerable<BlockListItem>>("tags") ?? null;
 }
 
 <aside class="side-bar">
     <div class="tags-box">
         <h4>Tags</h4>
-        <p class="tag">Report</p>
-        <p class="tag">Busines plans</p>
-        <p class="tag">Insights</p>
-        <p class="tag">Business</p>
-        <p class="tag">App</p>
-        <p class="tag">Project</p>
-        <p class="tag">Finance</p>
-        <p class="tag">Pricing</p>
+        @if(tagList != null)
+        {
+            foreach (var tag in tagList)
+            {
+                <p class="tag">@tag.Content.Value("tagName")</p>
+            }
+        }
     </div>
     <div class="card">
         <h4>How can we help you?</h4>

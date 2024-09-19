@@ -1,0 +1,9 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "masterLayout.cshtml";
+}
+
+@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml");
+
+@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml");

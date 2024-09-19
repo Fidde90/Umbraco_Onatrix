@@ -1,29 +1,73 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 
+    var selection = Umbraco.Content(Guid.Parse("df6ec1db-d89d-4cb0-b98e-9ab0cd1955c8"))?
+    .ChildrenOfType("projectItemTemplate")?
+    .Where(x => x.IsVisible());
+
+
+    if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
+        currentPage = 1;
+
+    var listLenght = selection?.Count() ?? 0;
+    var pageSize = 4;
+    var pagedItems = selection?.Skip((currentPage - 1) * pageSize).Take(pageSize);
+
+
 }
 
-<section id="main-content">
-    <div class="container">
-        <div class="articles">
+
+<div class="articles">
+    @if (pagedItems != null)
+    {
+        foreach (var item in pagedItems)
+        {
+            var projectImage = item.Value<IPublishedContent>("projectThumbnail")?.Url() ?? "";
+            string date = DateTime.Parse(item.Value("projectPublishedDate")?.ToString()!).ToString("MMMM dd, yyyy");
 
             <div class="article-box">
-                <img src="/images/annual report.png" alt="">
+                <img src="@projectImage" alt="">
                 <div class="text-info">
-                    <h4>Annual Report for Juva Inc.</h4>
-                    <p class="date"><i class="fa-regular fa-calendar-days"></i>June 15, 2024</p>
-                    <p class="paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Sed ut perspiciatis unde omnis iste natus error.</p>
-                    <a>Read more <i class="fa-solid fa-arrow-right"></i></a>
+                    <h4>@item.Value("pageTitle")</h4>
+                    <p class="date"><i class="fa-regular fa-calendar-days"></i>@date</p>
+                    <p class="paragraph">@item.Value("projectPremable");</p>
+                    <a href="@item.Url()">Read more <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
+        }
+    }
 
-            <div class="page-buttons">
-                <a href="" class="prev-next-btn active">Prev</a>
-                <a href="" class="page-btn active-btn">1</a>
-                <a href="" class="page-btn active-btn">2</a>
-                <a href="" class="prev-next-btn active">Next</a>
-            </div>
-        </div>
+    <div class="page-buttons">
+        @if (currentPage > 1)
+        {
+            <a href="?page=@(currentPage - 1)" class="prev-next-btn active">Prev</a>
+        }
+        else
+        {
+            <span class="prev-next-btn inactive">Prev</span>
+        }
+
+        @for (int i = 1; i <= Math.Ceiling((decimal)listLenght / pageSize); i++)
+        {
+            if (currentPage == i)
+            {
+                <a href="?page=@i" class="page-btn active-btn">@i</a>
+            }
+            else
+            {
+                <a href="?page=@i" class="page-btn">@i</a>
+            }
+
+        }
+
+        @if (currentPage < Math.Ceiling((decimal)listLenght / pageSize))
+        {
+            <a href="?page=@(currentPage + 1)" class="prev-next-btn active">Next</a>
+        }
+        else
+        {
+            <span class="prev-next-btn inactive">Next</span>
+        }
     </div>
+</div>
 
-</section>
