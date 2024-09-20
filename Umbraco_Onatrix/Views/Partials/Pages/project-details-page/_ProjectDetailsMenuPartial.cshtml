@@ -1,0 +1,12 @@
+﻿@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var root = UmbracoHelper.ContentAtRoot();
+    var settings = root?.FirstOrDefault(x => x.ContentType.Alias == "siteSettings") ?? null;
+    var tagList = settings!.Value<IEnumerable<BlockListItem>>("tagsList") ?? null;
+    ViewData["tagsList"] = tagList;
+}
+<aside class="side-bar">
+     @await Html.PartialAsync("/Views/Partials/Shared/_TagsPartial.cshtml")
+     @await Html.PartialAsync("/Views/Partials/Shared/_SideMenuFormCardPartial.cshtml")
+</aside>

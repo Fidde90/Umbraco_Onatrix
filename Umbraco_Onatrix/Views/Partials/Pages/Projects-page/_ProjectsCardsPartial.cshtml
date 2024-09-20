@@ -1,6 +1,5 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-
     var selection = Umbraco.Content(Guid.Parse("df6ec1db-d89d-4cb0-b98e-9ab0cd1955c8"))?
     .ChildrenOfType("projectItemTemplate")?
     .Where(x => x.IsVisible());
@@ -12,10 +11,7 @@
     var listLenght = selection?.Count() ?? 0;
     var pageSize = 4;
     var pagedItems = selection?.Skip((currentPage - 1) * pageSize).Take(pageSize);
-
-
 }
-
 
 <div class="articles">
     @if (pagedItems != null)
@@ -57,7 +53,6 @@
             {
                 <a href="?page=@i" class="page-btn">@i</a>
             }
-
         }
 
         @if (currentPage < Math.Ceiling((decimal)listLenght / pageSize))
