@@ -1,0 +1,29 @@
+﻿@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var projects = Umbraco.Content(Guid.Parse("df6ec1db-d89d-4cb0-b98e-9ab0cd1955c8"))?
+        .ChildrenOfType("projectItemTemplate")?.OrderBy(x => x.Value<DateTime>("projectPublishedDate")).Reverse()
+        .Where(x => x.IsVisible()).Take(4);
+}
+
+
+<h4>Recent projects</h4>
+
+@if (projects != null)
+{
+    foreach (var project in projects)
+    {
+        var projectImage = project.Value<IPublishedContent>("projectThumbnail")?.Url() ?? "";
+        string date = DateTime.Parse(project.Value("projectPublishedDate")?.ToString()!).ToString("MMMM dd, yyyy");
+
+        <a href="@project.Url()" class="small-card-link">
+            <div class="small-project-card">
+                <img src="@projectImage" alt="">
+                <div class="text-info">
+                    <h6>@project.Value("pageTitle")</h6>
+                    <p class="date"><i class="fa-regular fa-calendar-days"></i>@date</p>
+                </div>
+            </div>
+        </a>
+    }
+}
