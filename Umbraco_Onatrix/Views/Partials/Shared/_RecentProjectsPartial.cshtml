@@ -6,7 +6,6 @@
         .Where(x => x.IsVisible()).Take(4);
 }
 
-
 <h4>Recent projects</h4>
 
 @if (projects != null)
@@ -17,13 +16,15 @@
         string date = DateTime.Parse(project.Value("projectPublishedDate")?.ToString()!).ToString("MMMM dd, yyyy");
 
         <a href="@project.Url()" class="small-card-link">
-            <div class="small-project-card">
-                <img src="@projectImage" alt="">
-                <div class="text-info">
-                    <h6>@project.Value("pageTitle")</h6>
-                    <p class="date"><i class="fa-regular fa-calendar-days"></i>@date</p>
+            <div class="spacing">
+                <div class="small-project-card">
+                    <img src="@projectImage" alt="">
+                    <div class="text-info">
+                        <h6>@project.Value("pageTitle")</h6>
+                        <p class="date"><i class="fa-regular fa-calendar-days"></i>@date</p>
+                    </div>
                 </div>
-            </div>
+            </div>        
         </a>
     }
 }
