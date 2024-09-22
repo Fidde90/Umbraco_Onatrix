@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var listItems = (IEnumerable<BlockListItem>)ViewData["tagsList"]! ?? null;
+}
+
+<div class="tags-box">
+    <h4>Tags</h4>
+    @if (listItems != null)
+    {
+        foreach (var tag in listItems)
+        {
+            <p class="tag">@tag.Content.Value("tagName")</p>
+        }
+    }
+</div>

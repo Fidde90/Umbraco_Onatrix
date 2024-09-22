@@ -5,45 +5,17 @@
 
         h4{
             font-size: 25px;
+            margin-bottom:15px;
         }
 
-        form{
-            
+        form{           
             padding-bottom:80px;
 
             .inputs{
                 display: flex;
-                gap:30px;
-                
-                input {
-                    display: block;
-                    padding: 15px 15px 15px 15px;
-                    margin-top:15px;
-                    margin-bottom: 22px;
-                    width: 100%;
-                    border: 1px solid var(--color-border-gray);
-                    border-radius: 3px;
-                    overflow: hidden;
-                    outline: none;         
-
-                    &::placeholder{
-                        color:var(--color-border-gray);
-                    }
-                }
+                gap:30px;            
             }   
-
-            #text-area{
-                width:100%;
-                border-color:var(--color-border-gray);
-                border-radius: 3px;
-                padding: 15px 15px 15px 15px;
-                resize: none;
-
-                &::placeholder{
-                    color:var(--color-border-gray);
-                }
-            }
-
+          
             button{
                 margin-top:15px;
                 color:var(--color-accent);

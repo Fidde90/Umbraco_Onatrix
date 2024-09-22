@@ -18,9 +18,7 @@
             <h2>@title</h2>
         </div>
         <div class="cards">
-
             @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
-
         </div>
         <div class="page-buttons">
             @if (currentPage > 1)
@@ -52,8 +50,7 @@
             else
             {
                 <span class="prev-next-btn inactive">Next</span>
-            }
-          
+            }      
         </div>
     </div>
 </section>

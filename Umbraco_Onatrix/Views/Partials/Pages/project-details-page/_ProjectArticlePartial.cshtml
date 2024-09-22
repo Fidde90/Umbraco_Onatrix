@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    string date = DateTime.Parse(Model.Value("projectPublishedDate")?.ToString()!).ToString("MMMM dd, yyyy");
+
+    var projectTagsList = Model!.Value<IEnumerable<BlockListItem>>("projectTags") ?? null;
+    ViewData["tagsList"] = projectTagsList;
+}
+
+<div class="project-article">
+    <p class="date"><i class="fa-regular fa-calendar-days"></i>@date</p>
+    @Model.Value("projectArticle")
+    <div class="tags-box">
+        @await Html.PartialAsync("/Views/Partials/Shared/_TagsPartial.cshtml")
+    </div>
+</div>
+
