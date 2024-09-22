@@ -9,40 +9,13 @@
             gap: 50px;
         }
 
-        .service-info {
+        .service-article {
 
             padding-top: 80px;
 
             @include tablet {
                 max-width: 770px;
                 width: 100%;
-            }
-
-            img {
-                max-width: 100%;
-            }
-
-            .title {
-                font-size: 25px;
-                margin-top: 40px;
-            }
-
-            .info {
-                @include small-text;
-                color: var(--color-default);
-            }
-
-            .list {
-                padding-left: 15px;
-                margin: 0;
-
-                li {
-                    margin-bottom: 15px;
-
-                    &::marker {
-                        color: var(--color-secondary);
-                    }
-                }
             }
         }
 

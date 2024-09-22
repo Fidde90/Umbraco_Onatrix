@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+
+}
+
+<article class="service-article">
+    @(Model.Value("pageContent") == null ? "" : Model.Value("pageContent"))
+</article>

@@ -4,5 +4,7 @@
 	ViewBag.Title = @Model.Value("pageTitle");
 }
 
-@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml");
+@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsMainContentPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml")
 
