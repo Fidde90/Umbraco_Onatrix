@@ -4,6 +4,7 @@
     border-color: var(--color-border-gray);
     position: relative;
     margin-bottom: 30px;
+    background-color:var(--color-light);
 
     @include desktop {
         margin-bottom: 100px;

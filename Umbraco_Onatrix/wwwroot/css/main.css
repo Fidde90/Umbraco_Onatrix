@@ -459,6 +459,7 @@ select {
   border-color: var(--color-border-gray);
   position: relative;
   margin-bottom: 30px;
+  background-color: var(--color-light);
 }
 @media (min-width: 1400px) {
   .side-bar {
