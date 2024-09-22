@@ -1,0 +1,36 @@
+.small-card-link {
+    text-decoration: none;
+    color: var(--color-default);
+
+    .spacing {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--color-border-gray);
+
+        .small-project-card {
+            display: flex;
+            align-items: center;
+            width: 310px;
+            height: 85px;
+            border-radius:3px;
+            img {
+                width: 130px;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            h6 {
+                margin-top: 7px;
+                max-width: 150px;
+                color: var(--color-deafult);
+            }
+
+            .text-info {
+                margin-left: 10px;
+            }
+
+            &:hover {
+                box-shadow: 2px 2px 40px 5px var(--color-border-gray);
+            }
+        }
+    }
+}

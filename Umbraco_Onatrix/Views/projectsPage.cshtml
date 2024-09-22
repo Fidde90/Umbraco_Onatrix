@@ -1,0 +1,10 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "masterLayout.cshtml";
+    ViewBag.Title = "Our Projects";
+}
+
+@await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Pages/Projects-page/_ProjectsMainContentPartial.cshtml")
+@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml")
