@@ -1,10 +1,13 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
     var menuImage = Model?.Value<IPublishedContent>("serviceMenuImg")?.Url() ?? "";
+    string navigateTo = Model?.Value<string>("navigateTo") ?? "#";
 }
 
-<div class="menu-card">
-    <h4>@Model?.Value("serviceMenuHeading")</h4>
-    <img src="@menuImage" alt="">
-    <p class="info">@Model?.Value("serviceMenuPremable")</p>
-</div>
+<a href="/@navigateTo/" class="menu-card">
+    <div >
+        <h4>@Model?.Value("serviceMenuHeading")</h4>
+        <img src="@menuImage" alt="">
+        <p class="info">@Model?.Value("serviceMenuPremable")</p>
+    </div>
+</a>

@@ -2,29 +2,26 @@
     padding-top: 70px;
     padding-bottom: 80px;
 
-    .container {
-    
-        .form-group {
-            width:100%;
-      
-            h4 {
-                font-size: 25px;
-                margin-bottom: 15px;
-            }
+    .form-group {
+        width: 100%;
 
-            .inputs {
-                display: flex;
-                gap: 30px;
-            }
-
-            button {
-                margin-top: 15px;
-                color: var(--color-accent);
-            }
+        h4 {
+            font-size: 25px;
+            margin-bottom: 15px;
         }
 
-        @include ultra-wide {
-            max-width: 1200px;
+        .inputs {
+            display: flex;
+            gap: 30px;
         }
+
+        button {
+            margin-top: 15px;
+            color: var(--color-accent);
+        }
+    }
+
+    @include ultra-wide {
+        max-width: 1200px;
     }
 }

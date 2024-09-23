@@ -10,12 +10,17 @@
         }
 
         .service-article {
-
             padding-top: 80px;
 
             @include tablet {
                 max-width: 770px;
                 width: 100%;
+            }
+
+            p {
+                img {
+                    max-width: 760px;
+                }
             }
         }
 
@@ -33,13 +38,16 @@
                 border-left: none;
                 padding-left: 0;
                 padding-right: 40px;
-                margin-bottom:0;
+                margin-bottom: 0;
             }
 
             .menu-card {
                 padding: 15px 0;
                 max-width: 300px;
                 width: 100%;
+                text-decoration: none;
+                color: var(--color-deafult);
+                border-radius: 10px;
 
                 img {
                     width: 300px;
@@ -48,15 +56,17 @@
                 }
 
                 h4 {
-                    margin-top: 7px;
-                    margin-bottom: 25px;
+                    margin: 7px 0 25px 5px;
                     max-width: 150px;
-                    color: var(--color-deafult);
                 }
 
                 .info {
                     @include small-text;
-                    margin-top: 25px;
+                    margin: 25px 0 0 5px;
+                }
+
+                &:hover {
+                    box-shadow: 2px 2px 40px 5px var(--color-border-gray);
                 }
             }
         }
