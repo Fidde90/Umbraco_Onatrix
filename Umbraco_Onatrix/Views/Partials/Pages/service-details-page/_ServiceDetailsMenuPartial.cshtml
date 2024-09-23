@@ -1,3 +1,16 @@
-﻿<aside class="side-bar">
-    @await Html.PartialAsync("/Views/Partials/Shared/_SideMenuFormCardPartial.cshtml")
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var displayForm = Model?.Value<bool>("displayServiceDetailsMenuForm") ?? false;
+    var displayInfo = Model?.Value<bool>("displayServiceDetailsMenuInfo") ?? false;
+}
+<aside class="side-bar">
+    @if (displayInfo)
+    {
+        @await Html.PartialAsync("/Views/Partials/Shared/_SmallAboutUsCardPartial.cshtml")
+    }
+
+    @if (displayForm)
+    {
+        @await Html.PartialAsync("/Views/Partials/Shared/_SideMenuFormCardPartial.cshtml")
+    }
 </aside>

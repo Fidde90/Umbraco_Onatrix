@@ -1,8 +1,11 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-
+    var article = Model?.Value<object>("serviceArticle");
 }
 
 <article class="service-article">
-    @(Model.Value("pageContent") == null ? "" : Model.Value("pageContent"))
+    @(!string.IsNullOrEmpty(article?.ToString()) ? @article : "hejsan")
 </article>
+
+
+

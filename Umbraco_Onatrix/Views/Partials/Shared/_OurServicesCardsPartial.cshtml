@@ -8,13 +8,14 @@
 {
     @foreach (var service in services)
     {
-        var serviceImage = service.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "#";
-        var servicePreamble = service.Value<string>("preamble") ?? $"{@service.Name()}";
+        var serviceImage = service.Value<IPublishedContent>("serviceCardThumbnailImg")?.Url() ?? "#";
+        var servicePreamble = service.Value<string>("serviceCardPremable") ?? $"{@service.Name()}";
+        var serviceHeading = service.Value<string>("servieCardHeading") ?? $"{@service.Name()}";
 
         <a href="@service.Url()" class="service-card">
             <div class="content">
-                <h4>@service.Name()</h4>
-                <img src="@serviceImage" alt="service image">
+                <h4>@serviceHeading</h4>
+                <img src="@serviceImage" alt="@Model.Value("serviceCardThumbnailAltText")">
                 <p class="small-text">
                     @servicePreamble
                 </p>

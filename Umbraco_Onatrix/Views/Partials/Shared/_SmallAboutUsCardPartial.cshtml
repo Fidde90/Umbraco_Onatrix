@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var menuImage = Model?.Value<IPublishedContent>("serviceMenuImg")?.Url() ?? "";
+}
+
+<div class="menu-card">
+    <h4>@Model?.Value("serviceMenuHeading")</h4>
+    <img src="@menuImage" alt="">
+    <p class="info">@Model?.Value("serviceMenuPremable")</p>
+</div>

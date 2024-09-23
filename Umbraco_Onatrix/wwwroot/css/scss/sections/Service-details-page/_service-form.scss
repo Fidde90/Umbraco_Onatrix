@@ -1,28 +1,29 @@
-#service-form{  
-    padding-top:70px;
+#service-form {
+    padding-top: 70px;
+    padding-bottom: 80px;
 
-    .container{
+    .container {
+    
+        .form-group {
+            width:100%;
+      
+            h4 {
+                font-size: 25px;
+                margin-bottom: 15px;
+            }
 
-        h4{
-            font-size: 25px;
-            margin-bottom:15px;
-        }
-
-        form{           
-            padding-bottom:80px;
-
-            .inputs{
+            .inputs {
                 display: flex;
-                gap:30px;            
-            }   
-          
-            button{
-                margin-top:15px;
-                color:var(--color-accent);
+                gap: 30px;
+            }
+
+            button {
+                margin-top: 15px;
+                color: var(--color-accent);
             }
         }
 
-        @include ultra-wide{
+        @include ultra-wide {
             max-width: 1200px;
         }
     }

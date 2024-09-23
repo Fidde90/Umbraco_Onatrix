@@ -1,10 +1,13 @@
 ﻿
 <section id="service-details">
     <div class="container">
-        @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsMenuPartial.cshtml")
-        @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsArticlePartial.cshtml")
-   
+        <div class="article-menu">
+            @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsMenuPartial.cshtml")
+            @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsArticlePartial.cshtml")
+        </div>
+        @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsFormPartial.cshtml")
     </div>
 </section>
 
-     @await Html.PartialAsync("/Views/Partials/Pages/service-details-page/_ServiceDetailsFormPartial.cshtml")
+
+
