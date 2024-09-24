@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var buttonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("contactFormButtonColor")?.Label ?? "primary";
+}
+
+<div class="container">
+    <section class="form-box bg-light">
+        <div class="title-text">
+            <div class="section-title">
+                <span>@Model?.Value("contactFormSectionTitle")</span>
+                <h2>@Model?.Value("contactFormHeading")</h2>
+            </div>
+            <p>@Model?.Value("contactForomParagraph")</p>
+        </div>
+        <form action="post">
+            <div class="inputs">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Phone">
+                <input type="text" placeholder="Email address">
+                <select>
+                    <option value="Financial consulting">Financial consulting</option>
+                </select>
+            </div>
+            <button class="btn-@buttonColor" type="submit">@Model?.Value("contactFormButtonText")</button>
+        </form>
+    </section>
+</div>
