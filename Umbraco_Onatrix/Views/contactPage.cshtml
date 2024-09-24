@@ -1,11 +1,15 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-	Layout = "masterLayout.cshtml";
+    Layout = "masterLayout.cshtml";
+    ViewBag.Title = @Model.Value("pageTitle") ?? "Contact Us";
 }
 
 @await Html.PartialAsync("/Views/Partials/Shared/_BreadCrumbPartial.cshtml")
-
-<h1 class="container" style="margin-top:200px; font-size:80px;">Contact Page</h1>
-
-
-
+@await Html.PartialAsync("/Views/Partials/Shared/_ContactInformationPartial.cshtml")
+<div id="map">
+    @await Html.PartialAsync("/Views/Partials/Pages/contact-page/_MapPartial.cshtml")
+    @await Html.PartialAsync("/Views/Partials/Pages/contact-page/_ContactFormPartial.cshtml")
+</div>
+@await Html.PartialAsync("/Views/Partials/Shared/_BrandMentionsPartial.cshtml")

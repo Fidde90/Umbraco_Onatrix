@@ -8,10 +8,13 @@
     var email = settings?.Value<string>("emailAddress") ?? "";
     var imageUrl = settings?.Value<IPublishedContent>("contactStaffImage")?.Url() ?? null;
     var backgroundImageUrl = settings?.Value<IPublishedContent>("contactBackgroundImage")?.Url() ?? null;
-
     var showBrandSection = settings?.Value<bool>("displayPartnersSection") ?? false;
+    var backgroundColor = settings?.Value<ColorPickerValueConverter.PickedColor>("contactBackgroundColor")?.Label ?? "gray";
+    var contactPagebgColor = Model?.Value<ColorPickerValueConverter.PickedColor>("backgroundColor")?.Label ?? "light";
+    var url = Context.Request.Path.ToString().Trim("/");
 }
-<section id="contact-section" class="bg-gray">
+
+<section id="contact-section" class="@(url == "contact" ?  $"bg-{contactPagebgColor}" : $"bg-{backgroundColor}")">
     <div class="container">
         <div class="images">
             <img class="front-image" src="@imageUrl" alt="">
