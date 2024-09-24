@@ -1,6 +1,11 @@
-﻿<section id="main-content">
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var displayProjects = Model?.Value<bool>("displayProjects") ?? false;
+}
+
+<section id="main-content">
     <div class="container">
-        @await Html.PartialAsync("./_ProjectsCardsPartial.cshtml")
+        @(displayProjects == true ? await Html.PartialAsync("./_ProjectsCardsPartial.cshtml") : string.Empty)
         @await Html.PartialAsync("./_ProjectsMenuPartial.cshtml")
     </div>
 </section>

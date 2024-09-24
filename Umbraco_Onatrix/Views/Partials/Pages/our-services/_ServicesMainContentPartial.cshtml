@@ -1,6 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-    var title = Model.Value<string>("pageHeading");
+    var displayCards = Model?.Value<bool>("displayServices") ?? false;
+    var title = Model?.Value<string>("pageHeading");
     var selection = Umbraco.Content(Guid.Parse("e342d661-6625-4de5-8e61-f138756992b7"))?.ChildrenOfType("serviceItemTemplate")?.Where(x => x.IsVisible());
 
     if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
@@ -18,7 +19,10 @@
             <h2>@title</h2>
         </div>
         <div class="cards">
-            @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
+            @if (displayCards)
+            {
+                @await Html.PartialAsync("/Views/Partials/Shared/_OurServicesCardsPartial.cshtml")
+            }
         </div>
         <div class="page-buttons">
             @if (currentPage > 1)
@@ -40,7 +44,7 @@
                 {
                     <a href="?page=@i" class="page-btn">@i</a>
                 }
-        
+
             }
 
             @if (currentPage < Math.Ceiling((decimal)listLenght / pageSize))
@@ -50,7 +54,7 @@
             else
             {
                 <span class="prev-next-btn inactive">Next</span>
-            }      
+            }
         </div>
     </div>
 </section>

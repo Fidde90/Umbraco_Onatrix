@@ -1,6 +1,6 @@
 #service-details {
 
-    .container {
+    .article-menu {
         display: flex;
         flex-direction: column-reverse;
 
@@ -9,8 +9,7 @@
             gap: 50px;
         }
 
-        .service-info {
-
+        .service-article {
             padding-top: 80px;
 
             @include tablet {
@@ -18,30 +17,9 @@
                 width: 100%;
             }
 
-            img {
-                max-width: 100%;
-            }
-
-            .title {
-                font-size: 25px;
-                margin-top: 40px;
-            }
-
-            .info {
-                @include small-text;
-                color: var(--color-default);
-            }
-
-            .list {
-                padding-left: 15px;
-                margin: 0;
-
-                li {
-                    margin-bottom: 15px;
-
-                    &::marker {
-                        color: var(--color-secondary);
-                    }
+            p {
+                img {
+                    max-width: 760px;
                 }
             }
         }
@@ -60,13 +38,16 @@
                 border-left: none;
                 padding-left: 0;
                 padding-right: 40px;
-                margin-bottom:0;
+                margin-bottom: 0;
             }
 
-            .side-card {
+            .menu-card {
                 padding: 15px 0;
                 max-width: 300px;
                 width: 100%;
+                text-decoration: none;
+                color: var(--color-deafult);
+                border-radius: 10px;
 
                 img {
                     width: 300px;
@@ -75,15 +56,17 @@
                 }
 
                 h4 {
-                    margin-top: 7px;
-                    margin-bottom: 25px;
+                    margin: 7px 0 25px 5px;
                     max-width: 150px;
-                    color: var(--color-deafult);
                 }
 
                 .info {
                     @include small-text;
-                    margin-top: 25px;
+                    margin: 25px 0 0 5px;
+                }
+
+                &:hover {
+                    box-shadow: 2px 2px 40px 5px var(--color-border-gray);
                 }
             }
         }

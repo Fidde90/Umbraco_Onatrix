@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var displayContent = Model?.Value<bool>("displayServiceDetailsMenuForm") ?? false;
+}
+
+@if (displayContent)
+{
+    <form id="service-form" method="post">
+        <fieldset class="form-goup">
+            <legend><h4>Have a question?</h4></legend>
+            <div class="inputs">
+                <input type="text" name="" id="" placeholder="Name">
+                <input type="text" name="" id="" placeholder="Email">
+            </div>
+            <textarea name="" id="text-area" rows="10" placeholder="Question"></textarea>
+            <button class="btn-primary" type="submit">Submit</button>
+        </fieldset>
+    </form>
+}

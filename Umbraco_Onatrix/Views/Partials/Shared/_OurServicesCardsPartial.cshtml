@@ -1,20 +1,21 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-    var list = (IEnumerable<IPublishedContent>)ViewData["OurServicesCards"]!;
+    var services = (IEnumerable<IPublishedContent>)ViewData["OurServicesCards"]!;
 }
 
-@if (list != null)
+@if (services != null)
 {
-    @foreach (var item in list)
+    @foreach (var service in services)
     {
-        var serviceImage = item.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "#";
-        var servicePreamble = item.Value<string>("preamble") ?? $"{@item.Name()}";
+        var serviceImage = service.Value<IPublishedContent>("serviceCardThumbnailImg")?.Url() ?? "#";
+        var servicePreamble = service.Value<string>("serviceCardPremable") ?? $"{@service.Name()}";
+        var serviceHeading = service.Value<string>("servieCardHeading") ?? $"{@service.Name()}";
 
-        <a href="@item.Url()" class="service-card">
+        <a href="@service.Url()" class="service-card">
             <div class="content">
-                <h4>@item.Name()</h4>
-                <img src="@serviceImage" alt="service image">
+                <h4>@serviceHeading</h4>
+                <img src="@serviceImage" alt="@Model.Value("serviceCardThumbnailAltText")">
                 <p class="small-text">
                     @servicePreamble
                 </p>

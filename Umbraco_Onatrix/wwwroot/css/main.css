@@ -37,18 +37,6 @@ main {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /*
-  display:grid;
-  grid-template-rows: 1fr auto;
-
-  @include desktop {
-      grid-template-rows: auto auto 1fr auto;
-  }
-
-  @include ultra-wide{
-      grid-template-rows: auto auto 1fr auto;
-  }
-   */
 }
 
 .container, .container-fluid {
@@ -1539,55 +1527,34 @@ select {
   }
 }
 
-#service-details .container {
+#service-details .article-menu {
   display: flex;
   flex-direction: column-reverse;
 }
 @media (min-width: 768px) {
-  #service-details .container {
+  #service-details .article-menu {
     flex-direction: row;
     gap: 50px;
   }
 }
-#service-details .container .service-info {
+#service-details .article-menu .service-article {
   padding-top: 80px;
 }
 @media (min-width: 768px) {
-  #service-details .container .service-info {
+  #service-details .article-menu .service-article {
     max-width: 770px;
     width: 100%;
   }
 }
-#service-details .container .service-info img {
-  max-width: 100%;
+#service-details .article-menu .service-article p img {
+  max-width: 760px;
 }
-#service-details .container .service-info .title {
-  font-size: 25px;
-  margin-top: 40px;
-}
-#service-details .container .service-info .info {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  color: var(--color-default);
-}
-#service-details .container .service-info .list {
-  padding-left: 15px;
-  margin: 0;
-}
-#service-details .container .service-info .list li {
-  margin-bottom: 15px;
-}
-#service-details .container .service-info .list li::marker {
-  color: var(--color-secondary);
-}
-#service-details .container .side-bar {
+#service-details .article-menu .side-bar {
   border-top: 1px solid var(--color-border-gray);
   margin-top: 30px;
 }
 @media (min-width: 768px) {
-  #service-details .container .side-bar {
+  #service-details .article-menu .side-bar {
     border-top: none;
     width: 340px;
     padding-top: 30px;
@@ -1600,55 +1567,60 @@ select {
     margin-bottom: 0;
   }
 }
-#service-details .container .side-bar .side-card {
+#service-details .article-menu .side-bar .menu-card {
   padding: 15px 0;
   max-width: 300px;
   width: 100%;
+  text-decoration: none;
+  color: var(--color-deafult);
+  border-radius: 10px;
 }
-#service-details .container .side-bar .side-card img {
+#service-details .article-menu .side-bar .menu-card img {
   width: 300px;
   height: 168px;
   object-fit: cover;
 }
-#service-details .container .side-bar .side-card h4 {
-  margin-top: 7px;
-  margin-bottom: 25px;
+#service-details .article-menu .side-bar .menu-card h4 {
+  margin: 7px 0 25px 5px;
   max-width: 150px;
-  color: var(--color-deafult);
 }
-#service-details .container .side-bar .side-card .info {
+#service-details .article-menu .side-bar .menu-card .info {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
-  margin-top: 25px;
+  margin: 25px 0 0 5px;
+}
+#service-details .article-menu .side-bar .menu-card:hover {
+  box-shadow: 2px 2px 40px 5px var(--color-border-gray);
 }
 @media (min-width: 1921px) {
-  #service-details .container {
+  #service-details .article-menu {
     max-width: 1200px;
   }
 }
 
 #service-form {
   padding-top: 70px;
+  padding-bottom: 80px;
 }
-#service-form .container h4 {
+#service-form .form-group {
+  width: 100%;
+}
+#service-form .form-group h4 {
   font-size: 25px;
   margin-bottom: 15px;
 }
-#service-form .container form {
-  padding-bottom: 80px;
-}
-#service-form .container form .inputs {
+#service-form .form-group .inputs {
   display: flex;
   gap: 30px;
 }
-#service-form .container form button {
+#service-form .form-group button {
   margin-top: 15px;
   color: var(--color-accent);
 }
 @media (min-width: 1921px) {
-  #service-form .container {
+  #service-form {
     max-width: 1200px;
   }
 }
