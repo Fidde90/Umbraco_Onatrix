@@ -1,19 +1,41 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
     var displayContent = Model?.Value<bool>("displayServiceDetailsMenuForm") ?? false;
+    var error_name = TempData["error_name"]?.ToString();
+    var error_email = TempData["error_email"]?.ToString();
+    var error_message = TempData["error_message"]?.ToString();
 }
 
 @if (displayContent)
 {
-    <form id="service-form" method="post">
-        <fieldset class="form-goup">
-            <legend><h4>Have a question?</h4></legend>
-            <div class="inputs">
-                <input type="text" name="" id="" placeholder="Name">
-                <input type="text" name="" id="" placeholder="Email">
-            </div>
-            <textarea name="" id="text-area" rows="10" placeholder="Question"></textarea>
-            <button class="btn-primary" type="submit">Submit</button>
-        </fieldset>
-    </form>
+
+    @using (Html.BeginUmbracoForm("SubmitHandler", "Services", FormMethod.Post, new { novalidate = "novalidate" }))
+    {
+        <div id="service-form">
+
+            @if (TempData["form-success"]?.ToString() == "success")
+            {
+                <span class="success-form">Message submitted successfully</span>
+            }
+ 
+            <fieldset class="form-goup">
+                <legend><h4>Have a question?</h4></legend>
+                <div class="inputs">
+                    <div class="input-group @(!string.IsNullOrEmpty(error_name) ? "form-error" : null)">
+                        <input type="text" name="name" id="name" value="@TempData["name"]" placeholder="Name">
+                        <span>Enter a vaild name!</span>
+                    </div>
+                    <div class="input-group @(!string.IsNullOrEmpty(error_email) ? "form-error" : null)">
+                        <input type="text" name="email" id="email" value="@TempData["email"]" placeholder="Email">
+                        <span>Enter a vaild email!</span>
+                    </div>
+                </div>
+                <div class="input-group @(!string.IsNullOrEmpty(error_message) ? "form-error" : null)">
+                    <textarea name="message" id="message" rows="10" placeholder="Question">@TempData["message"]</textarea>
+                    <span>You must enter a message!</span>
+                </div>
+                <button class="btn-primary" type="submit">Submit</button>
+            </fieldset>
+        </div>
+    }
 }

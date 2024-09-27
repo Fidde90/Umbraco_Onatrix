@@ -233,10 +233,17 @@ h6 {
   font-weight: bold;
 }
 
+.input-group {
+  margin-bottom: 22px;
+}
+.input-group span {
+  display: none;
+  margin-left: 2px;
+}
+
 input {
   display: block;
   padding: 15px 15px 15px 15px;
-  margin-bottom: 22px;
   width: 100%;
   border: 1px solid var(--color-border-gray);
   border-radius: 3px;
@@ -250,7 +257,6 @@ input::placeholder {
 select {
   display: block;
   padding: 15px 15px 15px 15px;
-  margin-bottom: 22px;
   width: 100%;
   border: 1px solid var(--color-border-gray);
   border-radius: 3px;
@@ -258,15 +264,47 @@ select {
   outline: none;
 }
 
-#text-area {
+textarea {
   width: 100%;
   border-color: var(--color-border-gray);
   border-radius: 3px;
   padding: 15px 15px 15px 15px;
   resize: none;
+  outline: none;
 }
-#text-area::placeholder {
+textarea::placeholder {
   color: var(--color-border-gray);
+}
+
+.form-error input {
+  background-color: #FFEAEA;
+  border-color: red;
+}
+.form-error input::placeholder {
+  color: darkgrey;
+}
+.form-error textarea {
+  background-color: #FFEAEA;
+  border-color: red;
+}
+.form-error textarea::placeholder {
+  color: darkgrey;
+}
+.form-error span {
+  color: red;
+  display: block;
+  margin-left: 2px;
+  font-size: 10px;
+}
+
+.success-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: rgb(216, 251, 207);
+  font-size: 20px;
+  padding: 10px;
 }
 
 .homepage-form-card {
@@ -1603,6 +1641,7 @@ select {
 #service-form {
   padding-top: 70px;
   padding-bottom: 80px;
+  position: relative;
 }
 #service-form .form-group {
   width: 100%;
