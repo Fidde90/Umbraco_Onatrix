@@ -4,7 +4,7 @@
     border-color: var(--color-border-gray);
     position: relative;
     margin-bottom: 30px;
-    background-color:var(--color-light);
+    background-color: var(--color-light);
 
     @include desktop {
         margin-bottom: 100px;
@@ -42,6 +42,7 @@
         width: 100%;
         max-width: 300px;
         padding: 20px;
+        position: relative;
 
         h4 {
             color: var(--color-accent);
@@ -52,21 +53,35 @@
             margin-bottom: 15px;
         }
 
-        .input-div {
+        .input-group {
             position: relative;
 
-            i {
+            button {
+                padding: 0px;
+                background-color: transparent;
                 position: absolute;
                 top: 13px;
                 right: 15px;
-                z-index: 2;
-                color: var(--color-primary);
-                font-size: 22px;
+                border: none;
 
-                &::placeholder {
-                    font-style: italic;
+                i {
+                    color: black;
+                    z-index: 2;
+                    color: var(--color-primary);
+                    font-size: 22px;
+
+                    &::placeholder {
+                        font-style: italic;
+                    }
                 }
             }
+        }
+
+        .success-form {
+            position: absolute;
+            bottom: 8px;
+            font-size: 12px;
+            padding: 2px;
         }
     }
 }

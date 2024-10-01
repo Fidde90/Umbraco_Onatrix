@@ -521,6 +521,7 @@ textarea::placeholder {
   width: 100%;
   max-width: 300px;
   padding: 20px;
+  position: relative;
 }
 .side-bar .card h4 {
   color: var(--color-accent);
@@ -529,19 +530,31 @@ textarea::placeholder {
   color: var(--color-light);
   margin-bottom: 15px;
 }
-.side-bar .card .input-div {
+.side-bar .card .input-group {
   position: relative;
 }
-.side-bar .card .input-div i {
+.side-bar .card .input-group button {
+  padding: 0px;
+  background-color: transparent;
   position: absolute;
   top: 13px;
   right: 15px;
+  border: none;
+}
+.side-bar .card .input-group button i {
+  color: black;
   z-index: 2;
   color: var(--color-primary);
   font-size: 22px;
 }
-.side-bar .card .input-div i::placeholder {
+.side-bar .card .input-group button i::placeholder {
   font-style: italic;
+}
+.side-bar .card .success-form {
+  position: absolute;
+  bottom: 8px;
+  font-size: 12px;
+  padding: 2px;
 }
 
 .date {
@@ -1463,13 +1476,14 @@ textarea::placeholder {
   font-style: italic;
   color: var(--color-primary);
 }
-#map .container .form-box form .inputs {
+#map .container .form-box form .input-group {
   display: grid;
   grid-template-columns: auto;
   column-gap: 20px;
+  row-gap: 20px;
 }
 @media (min-width: 768px) {
-  #map .container .form-box form .inputs {
+  #map .container .form-box form .input-group {
     grid-template-columns: auto auto;
   }
 }

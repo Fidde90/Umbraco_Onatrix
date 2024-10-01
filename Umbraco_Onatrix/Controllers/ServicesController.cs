@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Messaging.ServiceBus;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
@@ -62,45 +66,41 @@ namespace Umbraco_Onatrix.Controllers
             }
 
 
-            using (var email = new MailMessage())
+            var email = new EmailRequestModel
             {
-                email.From = new MailAddress("onatrixteam@domain.com");
-                email.To.Add(form.Email);
-                email.Subject = "Message from us";
-                string message = "We have recived your message and we will come back to you as soon as possible.";
-                email.Body = $@"
+                To = form.Email,
+                Subject = "Question",
+                HtmlBody = $@"
                              <!DOCTYPE>
                                <html lang='en'>
                                 <head>
                                     <meta charset='UTF-8'>
                                     <meta name='viewport'´content='width=device-width, initial-scale=1.0'>
-                                    <title>{email.Subject}</title>
+                                    <title>Your Question</title>
                                 </head>
                                 <body>
-                                        <div style='font-size:50px; color:red;'>{message}</div>
+                                        
+                                        <div style='font-size:50px; color:red;'>Hello {form.Name}!</div>
+                                        <div style='font-size:30px; color:red;'>We have recied your message</div>
                                 </body>
                                </html>                       
-                          ";
+                          ",
+                PlainText = "We have recived your message"
+            };
 
-                email.IsBodyHtml = true;
-
-                using (var smtpClient = new SmtpClient())
-                {
-                    smtpClient.Host = "smtp.gmail.com";
-                    smtpClient.Port = 587;
-                    smtpClient.UseDefaultCredentials = false;
-                    smtpClient.Credentials = new NetworkCredential(); 
-                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtpClient.EnableSsl = true;
-
-                    try
-                    {
-                        await smtpClient.SendMailAsync(email);
-                    }
-                    catch (Exception ex) { Debug.WriteLine("Error Sending email SMTP:" + ex.Message); }
-                }              
+            await using var client = new ServiceBusClient("Endpoint=sb://onatrix-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=O37OuVCIncd1pkD0drttiwGJo7G5lqe7s+ASbMICBnE=");
+            ServiceBusSender sender = client.CreateSender("email_request");
+            var json = JsonConvert.SerializeObject(email);
+            ServiceBusMessage message = new ServiceBusMessage(json) { ContentType = "application/json" };
+            try
+            {
+                await sender.SendMessageAsync(message);
             }
+            catch (Exception ex) { Debug.WriteLine($"ERROR :: Sending to email queue {ex.Message}"); }
             
+
+
+
             TempData["form-success"] = "success";
             return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#service-form");
         }
