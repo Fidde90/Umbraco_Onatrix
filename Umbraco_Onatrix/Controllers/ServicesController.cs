@@ -48,8 +48,7 @@ namespace Umbraco_Onatrix.Controllers
                 return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#service-form");
             }
 
-            string htmlBodyMessage = _formManager.CreateServiceHtmlMessage("Service question", form.Name, form.Message);
-            bool result = await _servicebusRequestManager.SendEmailAsync(EmailMapper.CreateServiceEmail(form, htmlBodyMessage), "email_request");
+            bool result = await _servicebusRequestManager.SendEmailAsync(EmailMapper.CreateServiceEmail(form, _formManager.CreateServiceHtmlMessage(form, null)), "email_request");
             if (!result)
             {
                 TempData["form-success"] = "fail";

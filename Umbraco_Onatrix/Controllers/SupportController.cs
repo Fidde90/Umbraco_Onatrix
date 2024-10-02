@@ -37,8 +37,7 @@ namespace Umbraco_Onatrix.Controllers
                 return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#side-menu-card");
             }
 
-            string htmlBodyMessage = _formManager.CreateSupportHtmlMessage("Onatrix Support");
-            bool result = await _servicebusRequestManager.SendEmailAsync(EmailMapper.CreateSupportEmail(form, htmlBodyMessage), "email_request");
+            bool result = await _servicebusRequestManager.SendEmailAsync(EmailMapper.CreateSupportEmail(form, _formManager.CreateSupportHtmlMessage("Onatrix Support")), "email_request");
             if (!result)
             {
                 TempData["support_form-success"] = "fail";

@@ -39,5 +39,22 @@ namespace Umbraco_Onatrix.Mappers
 
             return null!;
         }
+        public static EmailRequestModel CreateContactEmail(ContactFormModel form, string htmlBodyMessage)
+        {
+            if (form != null)
+            {
+                var email = new EmailRequestModel
+                {
+                    To = form.Email,
+                    Subject = "Contact",
+                    HtmlBody = htmlBodyMessage,
+                    PlainText = $"We will give you a call on {form.PhoneNumber} as soon as we can!:)"
+                };
+
+                return email;
+            }
+
+            return null!;
+        }
     }
 }
