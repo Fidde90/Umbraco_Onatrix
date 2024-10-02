@@ -17,7 +17,6 @@
 
             @include desktop {
                 bottom: -100px;
-
             }
 
             @include tablet {
@@ -45,22 +44,39 @@
                 }
             }
 
-            form {
+            .form-inputs {
+                display: grid;
+                grid-template-columns: auto;
+                column-gap: 20px;
+                position: relative;
 
-                .input-group {
-                    display: grid;
-                    grid-template-columns: auto;
-                    column-gap: 20px;
-                    row-gap:20px;
-
-                    @include tablet {
-                        grid-template-columns: auto auto;
-                    }               
+                @include tablet {
+                    grid-template-columns: auto auto;
                 }
 
-                button {
-                    margin: 10px auto;
-                    width: 140px;
+                .input-group {
+                    max-width: 100%;
+                    width: 100%;
+
+                    span {
+                        text-align: left;
+                    }
+                }
+
+
+                .success-form {
+                    position: absolute;
+                    top: -90px;
+                    width: 100%;
+                }
+            }
+
+            button {
+                margin: 10px auto;
+                width: 100%;
+
+                @include desktop{
+                    width:140px;
                 }
             }
         }

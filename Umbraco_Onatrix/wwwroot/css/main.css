@@ -1476,20 +1476,37 @@ textarea::placeholder {
   font-style: italic;
   color: var(--color-primary);
 }
-#map .container .form-box form .input-group {
+#map .container .form-box .form-inputs {
   display: grid;
   grid-template-columns: auto;
   column-gap: 20px;
-  row-gap: 20px;
+  position: relative;
 }
 @media (min-width: 768px) {
-  #map .container .form-box form .input-group {
+  #map .container .form-box .form-inputs {
     grid-template-columns: auto auto;
   }
 }
-#map .container .form-box form button {
+#map .container .form-box .form-inputs .input-group {
+  max-width: 100%;
+  width: 100%;
+}
+#map .container .form-box .form-inputs .input-group span {
+  text-align: left;
+}
+#map .container .form-box .form-inputs .success-form {
+  position: absolute;
+  top: -90px;
+  width: 100%;
+}
+#map .container .form-box button {
   margin: 10px auto;
-  width: 140px;
+  width: 100%;
+}
+@media (min-width: 1400px) {
+  #map .container .form-box button {
+    width: 140px;
+  }
 }
 @media (min-width: 1921px) {
   #map .container {
