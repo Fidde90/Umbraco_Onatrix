@@ -14,37 +14,30 @@ using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Website.Controllers;
+using Umbraco_Onatrix.Managers;
+using Umbraco_Onatrix.Mappers;
 using Umbraco_Onatrix.Models;
 
 namespace Umbraco_Onatrix.Controllers
 {
     public class ServicesController : SurfaceController
     {
-        public ServicesController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory,
+        private readonly ServicebusRequestManager _servicebusRequestManager;
+        private readonly FormManager _formManager;
+        public ServicesController(FormManager formManager, ServicebusRequestManager servicebusRequestManager, IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory,
             ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) :
             base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
-
-        }
-
-        private static bool ValidateRegEx(string regEx, string valueToValidate)
-        {
-            if (regEx != null && valueToValidate != null)
-            {
-                Regex? RegEx = new(regEx!);
-
-                if (RegEx.IsMatch(valueToValidate!))
-                    return true;
-            }
-            return false;
+            _servicebusRequestManager = servicebusRequestManager;
+            _formManager = formManager;
         }
 
         public async Task<IActionResult> SubmitHandler(ServiceQuestionFormModel form)
         {
             var errorList = new Dictionary<string, bool>
             {
-                { "error_name", ValidateRegEx("^[\\p{L}\\p{M}\\'\\-\\. ]+$", form.Name) },
-                { "error_email", ValidateRegEx("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", form.Email) },
+                {"error_name", _formManager.ValidateRegEx("^[\\p{L}\\p{M}\\'\\-\\. ]+$", form.Name) },
+                { "error_email", _formManager.ValidateRegEx("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", form.Email) },
                 { "error_message", !string.IsNullOrEmpty(form.Message) }
             };
 
@@ -53,53 +46,20 @@ namespace Umbraco_Onatrix.Controllers
                 foreach (var keyValue in errorList)
                 {
                     if (keyValue.Value.Equals(false))
-                    {
                         TempData[$"{keyValue.Key}"] = true;
-                    }
                 }
 
-                TempData["name"] = form.Name;
-                TempData["email"] = form.Email;
-                TempData["message"] = form.Message;
-
+                TempData["name"] = form.Name; TempData["email"] = form.Email; TempData["message"] = form.Message;
                 return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#service-form");
             }
 
-
-            var email = new EmailRequestModel
+            string htmlBodyMessage = _formManager.CreateServiceHtmlMessage("Service question", form.Name, form.Message);
+            bool result = await _servicebusRequestManager.SendEmailAsync(EmailMapper.CreateServiceEmail(form, htmlBodyMessage), "email_request");
+            if (!result)
             {
-                To = form.Email,
-                Subject = "Question",
-                HtmlBody = $@"
-                             <!DOCTYPE>
-                               <html lang='en'>
-                                <head>
-                                    <meta charset='UTF-8'>
-                                    <meta name='viewport'´content='width=device-width, initial-scale=1.0'>
-                                    <title>Your Question</title>
-                                </head>
-                                <body>
-                                        
-                                        <div style='font-size:50px; color:red;'>Hello {form.Name}!</div>
-                                        <div style='font-size:30px; color:red;'>We have recied your message</div>
-                                </body>
-                               </html>                       
-                          ",
-                PlainText = "We have recived your message"
-            };
-
-            await using var client = new ServiceBusClient("Endpoint=sb://onatrix-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=O37OuVCIncd1pkD0drttiwGJo7G5lqe7s+ASbMICBnE=");
-            ServiceBusSender sender = client.CreateSender("email_request");
-            var json = JsonConvert.SerializeObject(email);
-            ServiceBusMessage message = new ServiceBusMessage(json) { ContentType = "application/json" };
-            try
-            {
-                await sender.SendMessageAsync(message);
+                TempData["form-success"] = "fail";
+                return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#service-form");
             }
-            catch (Exception ex) { Debug.WriteLine($"ERROR :: Sending to email queue {ex.Message}"); }
-            
-
-
 
             TempData["form-success"] = "success";
             return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#service-form");

@@ -26,6 +26,11 @@
                 {
                     <span class="success-form">Message submitted successfully</span>
                 }
+                else if (TempData["form-success"]?.ToString() == "fail")
+                {
+                    <span class="success-form fail">Something went wrong sending your message, try again later..</span>
+                }
+
                 <div class="input-group @(!string.IsNullOrEmpty(error_name) ? "form-error" : null)">
                     <input id="name" name="name" type="text" value="@TempData["contact_name"]" placeholder="Name">
                     <span>Enter a vaild name!</span>

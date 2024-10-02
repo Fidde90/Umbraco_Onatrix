@@ -307,6 +307,10 @@ textarea::placeholder {
   padding: 10px;
 }
 
+.fail {
+  background-color: rgb(255, 155, 157);
+}
+
 .homepage-form-card {
   display: flex;
   flex-direction: column;

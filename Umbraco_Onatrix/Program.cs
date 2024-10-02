@@ -1,3 +1,6 @@
+using SixLabors.ImageSharp;
+using Umbraco_Onatrix.Managers;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
@@ -6,6 +9,10 @@ builder.CreateUmbracoBuilder()
     .AddDeliveryApi()
     .AddComposers()
     .Build();
+
+
+builder.Services.AddSingleton<ServicebusRequestManager>();
+builder.Services.AddSingleton<FormManager>();
 
 WebApplication app = builder.Build();
 

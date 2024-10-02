@@ -17,7 +17,11 @@
             {
                 <span class="success-form">Message submitted successfully</span>
             }
- 
+            else if (TempData["form-success"]?.ToString() == "fail")
+            {
+                <span class="success-form fail">Something went wrong sending your message, try again later..</span>
+            }
+
             <fieldset class="form-goup">
                 <legend><h4>Have a question?</h4></legend>
                 <div class="inputs">
