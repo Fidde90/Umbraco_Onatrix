@@ -4,6 +4,7 @@
     var error_name = TempData["error_name"]?.ToString();
     var error_email = TempData["error_email"]?.ToString();
     var error_message = TempData["error_message"]?.ToString();
+    string formSuccess = TempData["form-success"]?.ToString()!;
 }
 
 @if (displayContent)
@@ -13,11 +14,11 @@
     {
         <div id="service-form">
 
-            @if (TempData["form-success"]?.ToString() == "success")
+            @if (formSuccess == "success")
             {
                 <span class="success-form">Message submitted successfully</span>
             }
-            else if (TempData["form-success"]?.ToString() == "fail")
+            else if (formSuccess == "fail")
             {
                 <span class="success-form fail">Something went wrong sending your message, try again later..</span>
             }

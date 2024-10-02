@@ -14,7 +14,24 @@ namespace Umbraco_Onatrix.Mappers
                     To = form.Email,
                     Subject = "Service question",
                     HtmlBody = htmlBodyMessage,
-                    PlainText = "We have recived your message, and we will get back to you ass soon as possible! :)"
+                    PlainText = "We have recived your message, and we will get back to you as soon as possible! :)"
+                };
+
+                return email;
+            }
+
+            return null!;
+        }
+        public static EmailRequestModel CreateSupportEmail(SupportFormModel form, string htmlBodyMessage)
+        {
+            if (form != null)
+            {
+                var email = new EmailRequestModel
+                {
+                    To = form.Email,
+                    Subject = "Support",
+                    HtmlBody = htmlBodyMessage,
+                    PlainText = "We have recived your message, and we will get back to you as soon as possible! :)"
                 };
 
                 return email;

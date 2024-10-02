@@ -32,7 +32,7 @@ namespace Umbraco_Onatrix.Managers
                                 <body style='background-color:lightgray'>                                        
                                         <div style='font-size:50px; color:black;'>Hello {recieverName}!</div>
                                         <div style='font-size:30px; color:lack;'>We have recived your message, and we will get back to you ass soon as possible! :)</div>
-                                        <p style='color:darkgreen; font-size:20px;'>Best regars Onatrix team.<p>
+                                        <p style='color:darkgreen; font-size:20px;'>Best regards Onatrix team.<p>
                                         <br>
                                         <br>
                                         <hr>
@@ -45,6 +45,26 @@ namespace Umbraco_Onatrix.Managers
             }
 
             return "";
+        }
+
+        public string CreateSupportHtmlMessage(string? subject)
+        {               
+                string bodyMessage = $@"
+                             <!DOCTYPE>
+                               <html lang='en'>
+                                <head>
+                                    <meta charset='UTF-8'>
+                                    <meta name='viewport'´content='width=device-width, initial-scale=1.0'>
+                                    <title>{subject}</title>
+                                </head>
+                                <body style='background-color:lightgray'>                                        
+                                        <div style='font-size:30px; color:lack;'>We have recived your message, and we will get back to you ass soon as possible!:) </div>
+                                        <p style='color:darkgreen; font-size:20px;'>Best regards Onatrix team.<p>
+                                </body>
+                               </html>                       
+                          ";
+
+                return bodyMessage;
         }
     }
 }

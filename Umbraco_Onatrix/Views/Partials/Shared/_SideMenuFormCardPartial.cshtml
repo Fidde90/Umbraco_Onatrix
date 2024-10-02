@@ -1,10 +1,11 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
 @{
-    var error_email = TempData["support_error_email"]?.ToString();
+    string error_email = TempData["support_error_email"]?.ToString()!;
+    string formSuccess = TempData["support_form-success"]?.ToString()!;
 }
 
-<div class="card">
+<div id="side-menu-card" class="card">
     <h4>How can we help you?</h4>
     <p>online support 24/7, we are here to help you</p>
     @using (Html.BeginUmbracoForm("SubmitHandler", "Support", FormMethod.Post, new { novalidate = "novalidate" }))
@@ -14,11 +15,11 @@
             <span>Enter a vaild email!</span>
             <button type="submit" class="btn-gray"><i class="fa-regular fa-envelope"></i></button>
         </div>
-        @if (TempData["support_form-success"]?.ToString() == "success")
+        @if (formSuccess == "success")
         {
             <span class="success-form">Message submitted successfully</span>
         }
-        else if (TempData["form-success"]?.ToString() == "fail")
+        else if (formSuccess == "fail")
         {
             <span class="success-form fail">Something went wrong sending your message, try again later..</span>
         }
