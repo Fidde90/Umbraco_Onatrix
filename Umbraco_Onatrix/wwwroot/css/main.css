@@ -328,17 +328,29 @@ textarea::placeholder {
   padding-left: 30px;
   margin: 0;
 }
-.homepage-form-card form {
+.homepage-form-card .form {
   display: flex;
   flex-direction: column;
   margin: 30px auto 0 auto;
   max-width: 415px;
   padding: 0 30px 0 30px;
+  position: relative;
 }
 @media (min-width: 768px) {
-  .homepage-form-card form {
+  .homepage-form-card .form {
     padding: 0px;
   }
+}
+.homepage-form-card .form .form-error {
+  position: relative;
+}
+.homepage-form-card .form .form-error span {
+  position: absolute;
+}
+.homepage-form-card .form .success-form {
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 #contact-section .container {
@@ -861,7 +873,7 @@ textarea::placeholder {
 #header .nav-section .search-bar {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 1400px) {
   #header .nav-section .btn-menu {
     margin-right: 0px;
   }
@@ -903,6 +915,34 @@ textarea::placeholder {
     position: relative;
     margin-right: 25px;
   }
+}
+#header .mobile-menu {
+  display: none !important;
+  position: absolute;
+  top: 85px;
+  transition: left 0.3s ease;
+  width: 100%;
+  background-color: var(--color-primary);
+  z-index: 5;
+  box-shadow: 3px 1px 15px 1px var(--color-primary);
+  text-align: center;
+  padding: 20px 0;
+}
+#header .mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  list-style: none;
+}
+#header .mobile-menu ul a {
+  font-size: 20px;
+  text-decoration: none;
+}
+#header .visible {
+  display: block !important;
+}
+#header .invisible {
+  display: none !important;
 }
 
 #footer {

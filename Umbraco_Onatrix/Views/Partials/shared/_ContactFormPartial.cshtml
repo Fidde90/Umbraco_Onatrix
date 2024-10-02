@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var buttonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("contactFormButtonColor")?.Label ?? "primary";
+
+    var error_name = TempData["contact_name_error"]?.ToString();
+    var error_phone = TempData["contact_phone_error"]?.ToString();
+    var error_email = TempData["contact_email_error"]?.ToString();
+    var error_department = TempData["contact_department_error"]?.ToString();
+}
+
+@if (TempData["form-success"]?.ToString() == "success")
+{
+    <span class="success-form">Message submitted successfully</span>
+}
+else if (TempData["form-success"]?.ToString() == "fail")
+{
+    <span class="success-form fail">Something went wrong sending your message, try again later..</span>
+}
+<div class="input-group @(!string.IsNullOrEmpty(error_name) ? "form-error" : null)">
+    <input id="name" name="name" type="text" value="@TempData["contact_name"]" placeholder="Name">
+    <span>Enter a vaild name!</span>
+</div>
+<div class="input-group @(!string.IsNullOrEmpty(error_phone) ? "form-error" : null)">
+    <input id="PhoneNumber" name="PhoneNumber" type="text" value="@TempData["contact_phone"]" placeholder="Phone">
+    <span>Enter a vaild phonenumber(no spaces)!</span>
+</div>
+<div class="input-group @(!string.IsNullOrEmpty(error_email) ? "form-error" : null)">
+    <input id="email" name="email" type="text" value="@TempData["contact_email"]" placeholder="Email address">
+    <span>Enter a vaild email!</span>
+</div>
+<div class="input-group @(!string.IsNullOrEmpty(error_department) ? "form-error" : null)">
+    <select id="Department" name="Department">
+        <option value="Financial consulting">Financial consulting</option>
+        <option value="Heavy Metal Department">Heavy Metal Department</option>
+        <option value="Death Metal Department">Death Metal Department</option>
+        <option value="Speed Metal Department">Speed Metal Department</option>
+    </select>
+    <span></span>
+</div>

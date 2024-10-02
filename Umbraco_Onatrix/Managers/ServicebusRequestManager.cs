@@ -25,7 +25,7 @@ namespace Umbraco_Onatrix.Managers
                 var json = JsonConvert.SerializeObject(email);
                 ServiceBusMessage message = new(json) { ContentType = "application/json" };
                 try
-                { 
+                {                
                     await sender.SendMessageAsync(message);
                 }
                 catch (Exception ex) { Debug.WriteLine($"ERROR :: Sending to email queue {ex.Message}"); return false; }

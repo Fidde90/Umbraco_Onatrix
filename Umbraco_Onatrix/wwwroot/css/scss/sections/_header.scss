@@ -84,7 +84,7 @@
             display: none;
         }
 
-        @include tablet {
+        @include desktop {
 
             .btn-menu {
                 margin-right: 0px;
@@ -132,5 +132,38 @@
                 margin-right: 25px;
             }
         }
+    }
+
+    .mobile-menu {
+        display: none !important;
+        position: absolute;
+        top: 85px;
+        transition: left 0.3s ease;
+        width: 100%;
+        background-color: var(--color-primary);
+        z-index: 5;
+        box-shadow: 3px 1px 15px 1px var(--color-primary);
+        text-align: center;
+        padding:20px 0;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 30px;
+            list-style: none;
+
+            a {
+                font-size: 20px;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .visible {
+        display: block !important;
+    }
+
+    .invisible {
+        display: none !important;
     }
 }

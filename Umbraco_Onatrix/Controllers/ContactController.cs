@@ -55,8 +55,17 @@ namespace Umbraco_Onatrix.Controllers
                 return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#contact-form");
             }
 
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+
+            aTimer.Start();
+
+            aTimer.Interval = 3000;
+
+            aTimer.Stop();
             TempData["form-success"] = "success";
             return Redirect(UmbracoContext.OriginalRequestUrl.ToString() + "#contact-form");
+
+   
 
         }
     }

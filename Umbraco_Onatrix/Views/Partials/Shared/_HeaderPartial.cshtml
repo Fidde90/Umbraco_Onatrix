@@ -33,6 +33,16 @@
                 }
             </ul>
         }
-        <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
+        <button id="mobile-button" class="btn-menu"><i class="fa-solid fa-bars-staggered"></i></button>
     </div>
 </section>
+<div class="mobile-menu">
+    <ul>
+        @foreach (var item in selection)
+        {
+            <li>
+                <a class="link @(item.IsAncestorOrSelf(Model) ? "active" : null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+            </li>
+        }
+    </ul>
+</div>

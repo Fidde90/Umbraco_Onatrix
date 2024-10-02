@@ -6,6 +6,8 @@
     var showAboutForm = Model.Value<bool>("displayAboutFormcard");
     var signatureImageUrl = Model?.Value<IPublishedContent>("aboutSignatureImage")?.Url();
     var signatureImage = !string.IsNullOrEmpty(signatureImageUrl) ? signatureImageUrl : "";
+
+    var buttonColor = Model?.Value<ColorPickerValueConverter.PickedColor>("aboutFormButtonColor")?.Label ?? "accent";
 }
 
 @if (showAboutSection)
@@ -19,13 +21,9 @@
                 </div>
                 @if (showAboutQuote)
                 {
-                    <p class="quote">
-                        “@Model?.Value("aboutQuote")”
-                    </p>
+                    <p class="quote">“@Model?.Value("aboutQuote")”</p>
                 }
-                <p class="small-text">
-                    @Model?.Value("aboutParagraph")
-                </p>
+                <p class="small-text">@Model?.Value("aboutParagraph")</p>
                 <img src="@signatureImage" alt="signature">
                 <p>@Model?.Value("aboutSigantureCaption")</p>
             </div>
@@ -33,23 +31,15 @@
             @if (showAboutForm)
             {
                 <div class="homepage-form-card">
-                    <div class="top bg-primary">
-                        <h3>Request a call back</h3>
-                    </div>
-                    <form class="form">
-                        <p class="small-text">
-                            Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            nulla pariatur
-                            excepteur sint occaecat
-                        </p>
-                        <input type="text" placeholder="Name">
-                        <input type="text" placeholder="Email Adderss">
-                        <input type="text" placeholder="Phone">
-                        <select>
-                            <option>Financial consulting</option>
-                        </select>
-                        <button class="btn-accent">Submit</button>
-                    </form>
+                    <div class="top bg-primary"><h3>@Model.Value("aboutFormTitle")</h3></div>
+                    @using (Html.BeginUmbracoForm("SubmitHandler", "Contact", FormMethod.Post, new { novailidate = "novalidate" }))
+                    {
+                        <div class="form">
+                            <p class="small-text">@Model.Value("aboutFormParagraph")</p>
+                            @await Html.PartialAsync("/Views/Partials/Shared/_ContactFormPartial.cshtml")
+                            <button class="btn-@buttonColor">@Model.Value("aboutFormButtonText")</button>
+                        </div>
+                    }
                 </div>
             }
         </div>
